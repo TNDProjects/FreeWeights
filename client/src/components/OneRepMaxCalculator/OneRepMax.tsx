@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { Calculator } from "lucide-react";
-//import "./OneRepMax.css"; // We will create this CSS file next
-import "./index.css"
-
+import "./OneRepMax.css"; // We will create this CSS file next
 
 const percentages = [100, 95, 90, 85, 80, 75, 70, 65, 60];
 
