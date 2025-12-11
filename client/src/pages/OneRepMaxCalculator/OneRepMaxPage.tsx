@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Calculator } from "lucide-react";
 import { Button } from "../../components/ui/Button.tsx";
 import { Input } from "../../components/ui/Input.tsx";
+import calculateMax from "./utils/calculateMax.ts";
 
 const percentages = [100, 95, 90, 85, 80, 75, 70, 65, 60];
 
@@ -10,15 +11,14 @@ const OneRepMaxPage = () => {
   const [reps, setReps] = useState<string>("");
   const [oneRepMax, setOneRepMax] = useState<number | null>(null);
 
-  const calculateOneRepMax = () => {
-    const w = parseFloat(weight);
-    const r = parseInt(reps);
 
-    if (w > 0 && r > 0 && r <= 30) {
-      const orm = w * (1 + r / 30);
-      setOneRepMax(Math.round(orm * 10) / 10);
-    }
-  };
+  const calculateOneRepMax = () => {
+    const actualWeight = parseFloat(weight);
+    const actualReps = parseInt(reps);
+    const actualMax = calculateMax(actualWeight, actualReps);
+    setOneRepMax(actualMax);
+  }
+
 
   const getWeightAtPercentage = (percentage: number) => {
     if (!oneRepMax) return 0;
@@ -34,7 +34,7 @@ const OneRepMaxPage = () => {
         {/* Header */}
         <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
           <div className="inline-flex justify-center items-center w-16 h-16 bg-primary-bg text-primary rounded-xl mb-4">
-            <Calculator size={32} />
+            <Calculator size={75} />
           </div>
           <h1 className="text-4xl font-bold mb-2 text-foreground">One Rep Max Calculator</h1>
           <p className="text-muted">
@@ -43,30 +43,33 @@ const OneRepMaxPage = () => {
         </div>
 
         {/* Calculator Card */}
-        <div className="bg-card border border-border rounded-xl p-8 mb-8 shadow-lg">
+        <div className="bg-card border rounded-xl p-8 mb-8 shadow-lg">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <Input
-              id="weight"
+              id="weight-input"
               label="Weight Lifted (lbs)"
               type="number"
-              placeholder="225"
+              placeholder="Enter Weight"
               value={weight}
-              onChange={(e) => setWeight(e.target.value)}
+              onChange={(event) => setWeight(event.target.value)}
             />
             <Input
-              id="reps"
+              id="reps-input"
               label="Reps Performed"
               type="number"
-              placeholder="5"
+              placeholder="Enter Reps"
               min="1"
-              max="30"
+              max="20"
               value={reps}
-              onChange={(e) => setReps(e.target.value)}
+              onChange={(event) => setReps(event.target.value)}
             />
           </div>
 
-          <Button onClick={calculateOneRepMax}>
-            Calculate 1RM
+          <Button
+            id="calculate-1rm-button"
+            variant="primary"
+            onClick={calculateOneRepMax}>
+            Get your Estimated Max
           </Button>
         </div>
 

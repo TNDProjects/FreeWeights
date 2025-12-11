@@ -14,7 +14,7 @@ export const Input = ({ label, id, className, ...props }: InputProps) => {
       )}
       <input
         id={id}
-        className={`w-full p-3 bg-input border border-border text-foreground rounded-lg outline-none focus:border-primary transition-colors ${className || ''}`}
+        className={`w-full p-3 bg-input border text-foreground rounded-lg outline-none focus:border-primary transition-colors ${className || ''}`}
         {...props}
       />
     </div>
