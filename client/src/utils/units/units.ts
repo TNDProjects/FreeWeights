@@ -17,4 +17,8 @@ export const ConvertToKilograms = (numberInPounds: number) => {
 export const ConvertToPounds = (numberInKilograms: number) => {
   return Math.floor(numberInKilograms * KG_TO_LBS);
 }
+//TODO: Create a function that rounds down to the nearest possible weight increment 
+//ex) We know that we won't ever lift a number like 313 so why give them a estimated max of 313?
+// Ideally we round down to 310 (or 315) in that situation. 
+// 
 

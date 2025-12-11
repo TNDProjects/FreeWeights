@@ -4,13 +4,22 @@ import { Button } from "../../components/ui/Button.tsx";
 import { Input } from "../../components/ui/Input.tsx";
 import calculateMax from "./utils/calculateMax.ts";
 
+
+type WeightUnit = "lbs" | "kgs";
+
 const percentages = [100, 95, 90, 85, 80, 75, 70, 65, 60];
 
 const OneRepMaxPage = () => {
+  const [unitOfMeasure, setUnitOfMeasure] = useState<WeightUnit>("lbs");
   const [weight, setWeight] = useState<string>("");
   const [reps, setReps] = useState<string>("");
   const [oneRepMax, setOneRepMax] = useState<number | null>(null);
 
+  const changeUnit = () => {
+
+
+
+  }
 
   const calculateOneRepMax = () => {
     const actualWeight = parseFloat(weight);
@@ -41,6 +50,8 @@ const OneRepMaxPage = () => {
             Enter your lift details to estimate your 1RM
           </p>
         </div>
+
+
 
         {/* Calculator Card */}
         <div className="bg-card border rounded-xl p-8 mb-8 shadow-lg">
@@ -92,7 +103,8 @@ const OneRepMaxPage = () => {
                   <div key={pct} className="flex justify-between px-6 py-4 hover:bg-input transition-colors">
                     <span className="text-muted">{pct}%</span>
                     <span className="font-semibold text-foreground">
-                      {getWeightAtPercentage(pct)} lbs
+                      {getWeightAtPercentage(pct)}
+                      {unitOfMeasure}
                     </span>
                   </div>
                 ))}
