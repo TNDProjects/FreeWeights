@@ -3,21 +3,33 @@ import { Calculator } from "lucide-react";
 import { Button } from "../../components/ui/Button.tsx";
 import { Input } from "../../components/ui/Input.tsx";
 import calculateMax from "./utils/calculateMax.ts";
+import { ConvertToPounds, ConvertToKilograms } from "../../utils/units/units.ts"
 
 
-type WeightUnit = "lbs" | "kgs";
+type WeightUnit = "LBS" | "KGS";
 
 const percentages = [100, 95, 90, 85, 80, 75, 70, 65, 60];
 
 const OneRepMaxPage = () => {
-  const [unitOfMeasure, setUnitOfMeasure] = useState<WeightUnit>("lbs");
+  const [unitOfMeasure, setUnitOfMeasure] = useState<WeightUnit>("LBS");
   const [weight, setWeight] = useState<string>("");
   const [reps, setReps] = useState<string>("");
   const [oneRepMax, setOneRepMax] = useState<number | null>(null);
 
+  //TODO: Fix bug for when we change the unit of measure multiple times we get weird interactions.
+  // Need to look into how we are calculating the 1RM and the logic below in regards to how we are handling LBS to KGS conversion.
+
   const changeUnit = () => {
 
-
+    if (unitOfMeasure == "LBS") {
+      setUnitOfMeasure("KGS");
+      const convertedWeight = ConvertToKilograms(parseFloat(weight));
+      setOneRepMax(convertedWeight);
+    } else if (unitOfMeasure == "KGS") {
+      setUnitOfMeasure("LBS");
+      const convertedWeight = ConvertToPounds(parseFloat(weight));
+      setOneRepMax(convertedWeight);
+    }
 
   }
 
@@ -52,7 +64,6 @@ const OneRepMaxPage = () => {
         </div>
 
 
-
         {/* Calculator Card */}
         <div className="bg-card border rounded-xl p-8 mb-8 shadow-lg">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -80,7 +91,14 @@ const OneRepMaxPage = () => {
             id="calculate-1rm-button"
             variant="primary"
             onClick={calculateOneRepMax}>
-            Get your Estimated Max
+            Calculate {weight} x {reps}
+          </Button>
+          <Button
+            id="change-unit=of-measure-button"
+            variant="primary"
+            onClick={changeUnit}
+          >
+            Click here to change to {unitOfMeasure === "LBS" ? "KG" : "lbs"}
           </Button>
         </div>
 
@@ -90,7 +108,7 @@ const OneRepMaxPage = () => {
             <div className="bg-card border border-primary rounded-xl p-8 text-center shadow-[0_0_20px_rgba(249,115,22,0.15)]">
               <p className="text-sm text-muted mb-2">Estimated One Rep Max</p>
               <p className="text-6xl font-bold text-foreground">
-                {oneRepMax} <span className="text-2xl text-muted">lbs</span>
+                {oneRepMax} <span className="text-2xl text-muted">{unitOfMeasure}</span>
               </p>
             </div>
 
