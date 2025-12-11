@@ -1,0 +1,20 @@
+/*
+ * This file is where we will handle all issues related to units of measure
+ * Ex) converting Pounds (LBs) to Kilograms (KGs) or KGs to Lbs
+*/
+
+/* 
+ * 1 LB = 0.453924 KGs 
+ * 1 KG = 2.204623 LBs 
+*/
+
+const LBS_TO_KG: number = 0.453924;
+const KG_TO_LBS: number = 2.204623;
+
+export const ConvertToKilograms = (numberInPounds: number) => {
+  return Math.floor(numberInPounds * LBS_TO_KG);
+}
+export const ConvertToPounds = (numberInKilograms: number) => {
+  return Math.floor(numberInKilograms * KG_TO_LBS);
+}
+

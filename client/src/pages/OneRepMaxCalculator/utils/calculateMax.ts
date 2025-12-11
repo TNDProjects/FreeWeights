@@ -9,21 +9,21 @@
 
 
 
-const calculate = (Weight: number, Reps: number): number => {
+const calculate = (weight: number, reps: number): number => {
 
-  if (Reps < 1 || Reps > 20) {
+  if (reps < 1 || reps > 20) {
     throw new Error("Rep input must be in the range 1-20");
   }
 
-  const calculatedMax: number = Math.round(Weight * (1 + Reps / 30));
+  const calculatedMax: number = Math.round(weight * (1 + reps / 30));
 
 
   return calculatedMax;
 
 }
 
-const calculateMax = (Weight: number, Reps: number): number => {
-  return calculate(Weight, Reps);
+const calculateMax = (weight: number, reps: number): number => {
+  return calculate(weight, reps);
 }
 
 export default calculateMax;
