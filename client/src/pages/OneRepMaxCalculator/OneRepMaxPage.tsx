@@ -20,9 +20,6 @@ const OneRepMaxPage = () => {
   const [reps, setReps] = useState<string>("");
   const [oneRepMax, setOneRepMax] = useState<number | null>(null);
 
-  //TODO: Fix bug for when we change the unit of measure multiple times we get weird interactions.
-  // Need to look into how we are calculating the 1RM and the logic below in regards to how we are handling LBS to KGS conversion.
-
   const changeUnit = () => {
 
     if (unitOfMeasure == "LBS") {
