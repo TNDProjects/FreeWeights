@@ -7,6 +7,10 @@ import { ConvertToPounds, ConvertToKilograms } from "../../utils/units/units.ts"
 
 
 type WeightUnit = "LBS" | "KGS";
+type Max = {
+  IN_POUNDS: string,
+  IN_KILOGRAMS: string
+}
 
 const percentages = [100, 95, 90, 85, 80, 75, 70, 65, 60];
 
@@ -23,11 +27,14 @@ const OneRepMaxPage = () => {
 
     if (unitOfMeasure == "LBS") {
       setUnitOfMeasure("KGS");
-      const convertedWeight = ConvertToKilograms(parseFloat(weight));
+      const convertedWeight = ConvertToKilograms(oneRepMax!);
       setOneRepMax(convertedWeight);
     } else if (unitOfMeasure == "KGS") {
+      console.log("before:", oneRepMax);
       setUnitOfMeasure("LBS");
-      const convertedWeight = ConvertToPounds(parseFloat(weight));
+      console.log("after: ", oneRepMax);
+      const convertedWeight = ConvertToPounds(oneRepMax!);
+      console.log("convertedWeight", convertedWeight);
       setOneRepMax(convertedWeight);
     }
 
@@ -98,7 +105,7 @@ const OneRepMaxPage = () => {
             variant="primary"
             onClick={changeUnit}
           >
-            Click here to change to {unitOfMeasure === "LBS" ? "KG" : "lbs"}
+            Click here to change to {unitOfMeasure === "LBS" ? "KG" : "LBS"}
           </Button>
         </div>
 
