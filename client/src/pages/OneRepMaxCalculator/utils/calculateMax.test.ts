@@ -4,7 +4,7 @@ import calculateMax from "./calculateMax";
 describe("calculateMax", () => {
 
   it("calculates the correct 1RM for valid inputs", () => {
-    const result = calculateMax(225, 5);
+    const result: number = calculateMax(225, 5);
 
     expect(result).toBe(263);
   });
