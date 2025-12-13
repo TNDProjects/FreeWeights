@@ -1,4 +1,5 @@
 import type { Max } from "../../types/types.ts";
+
 export const mockPercentagesData = [
   { lb: 315, kg: 142 },
   { lb: 299.3, kg: 134.9 },
@@ -10,7 +11,8 @@ export const mockPercentagesData = [
   { lb: 204.8, kg: 92.3 },
   { lb: 189, kg: 85.2 }
 ];
-export const mockMax: Max = {
+
+export const mockMaxData: Max = {
   IN_POUNDS: 315,
   IN_KILOGRAMS: 142
 }

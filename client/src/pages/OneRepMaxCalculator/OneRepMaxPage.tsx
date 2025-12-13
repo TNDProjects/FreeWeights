@@ -94,22 +94,6 @@ const OneRepMaxPage = () => {
             </p>
           </div>
 
-          {/* <div className="bg-card border border-border rounded-xl overflow-hidden"> */}
-          {/*    <div className="p-4 px-6 border-b border-border bg-white/5"> */}
-          {/*      <h3 className="font-semibold text-foreground">Percentage Breakdown</h3> */}
-          {/*    </div> */}
-          {/*    <div className="divide-y divide-border"> */}
-          {/*      {percentages.map((pct) => ( */}
-          {/*        <div key={pct} className="flex justify-between px-6 py-4 hover:bg-input transition-colors"> */}
-          {/*          <span className="text-muted">{pct}%</span> */}
-          {/*          <span className="font-semibold text-foreground"> */}
-          {/*            {getWeightAtPercentage(pct)} */}
-          {/*            {unitOfMeasure} */}
-          {/*          </span> */}
-          {/*        </div> */}
-          {/*      ))} */}
-          {/*    </div> */}
-          {/*  </div> */}
         </div>
       </div>
     </div>
