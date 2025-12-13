@@ -7,7 +7,7 @@ import { ConvertToKilograms } from "../../utils/units/units.ts"
 import type { Max } from "../OneRepMaxCalculator/types/types.ts";
 
 
-let maxData: Max = {
+const maxData: Max = {
   IN_POUNDS: null,
   IN_KILOGRAMS: null,
 }
@@ -15,22 +15,23 @@ let maxData: Max = {
 const OneRepMaxPage = () => {
   const [weight, setWeight] = useState<string>("");
   const [reps, setReps] = useState<string>("");
+  const [oneRepMax, setOneRepMax] = useState<Max>(maxData);
 
   const calculateOneRepMax = () => {
     const actualWeight = parseFloat(weight);
     const actualReps = parseInt(reps);
+
     const maxInPounds = calculateMax(actualWeight, actualReps);
     const maxInKG = ConvertToKilograms(maxInPounds);
-
-    maxData = {
+    setOneRepMax({
       IN_POUNDS: maxInPounds,
       IN_KILOGRAMS: maxInKG,
-    }
+    })
 
   }
 
-  const oneRepMaxInPounds = maxData!.IN_POUNDS;
-  const oneRepMaxInKg = maxData!.IN_KILOGRAMS;
+  const oneRepMaxInPounds = oneRepMax!.IN_POUNDS;
+  const oneRepMaxInKg = oneRepMax!.IN_KILOGRAMS;
 
   return (
     // "min-h-screen" makes it full height
@@ -82,12 +83,14 @@ const OneRepMaxPage = () => {
         </div>
 
         {/* Results Section */}
-        (
         <div className="flex flex-col gap-6 animate-in zoom-in-95 duration-300">
           <div className="bg-card border border-primary rounded-xl p-8 text-center shadow-[0_0_20px_rgba(249,115,22,0.15)]">
             <p className="text-sm text-muted mb-2">Estimated One Rep Max</p>
             <p className="text-6xl font-bold text-foreground">
-              {oneRepMaxInPounds} <span className="text-2xl text-muted">{oneRepMaxInKg}</span>
+              {oneRepMaxInPounds} LBS
+            </p>
+            <p className="text-6xl font-bold text-foreground">
+              {oneRepMaxInKg} KG
             </p>
           </div>
 
