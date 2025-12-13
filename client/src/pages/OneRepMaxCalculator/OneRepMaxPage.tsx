@@ -7,6 +7,18 @@ import calculateMax from "./utils/calculateMax.ts";
 import { ConvertToKilograms } from "../../utils/units/units.ts"
 import type { Max } from "../OneRepMaxCalculator/types/types.ts";
 
+/* 
+ * OneRepMaxPage component (subject to renaming)
+ *
+ *    weight: User enters in the amount of weight they lifted
+ *    reps: User enters the amount of reps (times they lifted the weight)
+ *    oneRepMax: Holds state of the users calculated one rep max 
+ *
+ *                              **NOTE** 
+ *    We default to pounds but we will display in both lbs and kgs.
+ *
+*/
+
 const maxData: Max = {
   IN_POUNDS: null,
   IN_KILOGRAMS: null,
@@ -18,11 +30,13 @@ const OneRepMaxPage = () => {
   const [oneRepMax, setOneRepMax] = useState<Max>(maxData);
 
   const calculateOneRepMax = () => {
+
     const actualWeight = parseFloat(weight);
     const actualReps = parseInt(reps);
 
     const maxInPounds = calculateMax(actualWeight, actualReps);
     const maxInKG = ConvertToKilograms(maxInPounds);
+
     setOneRepMax({
       IN_POUNDS: maxInPounds,
       IN_KILOGRAMS: maxInKG,
@@ -30,6 +44,7 @@ const OneRepMaxPage = () => {
 
   }
 
+  // Have these so it's easier to use inside our render
   const oneRepMaxInPounds = oneRepMax!.IN_POUNDS;
   const oneRepMaxInKg = oneRepMax!.IN_KILOGRAMS;
 
