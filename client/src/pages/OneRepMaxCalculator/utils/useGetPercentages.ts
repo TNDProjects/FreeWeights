@@ -8,7 +8,8 @@ const getWeightAtPercentage = (max: Max, percentage: number) => {
   }
   const maxes = {
     lb: Math.round((max!.IN_POUNDS! * percentage) / 100 * 10) / 10,
-    kg: Math.round((max!.IN_KILOGRAMS! * percentage) / 100 * 10) / 10
+    kg: Math.round((max!.IN_KILOGRAMS! * percentage) / 100 * 10) / 10,
+    percentage: percentage
   }
   return maxes;
 };
@@ -19,5 +20,8 @@ const useGetPercentages = (max: Max) => {
 
 
 
-export default useGetPercentages;
+export {
+  useGetPercentages,
+  getWeightAtPercentage
+}
 
