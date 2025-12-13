@@ -3,25 +3,16 @@ import { Calculator } from "lucide-react";
 import { Button } from "../../components/ui/Button.tsx";
 import { Input } from "../../components/ui/Input.tsx";
 import calculateMax from "./utils/calculateMax.ts";
-import { ConvertToPounds, ConvertToKilograms } from "../../utils/units/units.ts"
+import { ConvertToKilograms } from "../../utils/units/units.ts"
+import type { Max } from "../OneRepMaxCalculator/types/types.ts";
 
 
-type WeightUnit = "LBS" | "KGS";
-
-type Max = {
-  IN_POUNDS: null | null,
-  IN_KILOGRAMS: number | null
-}
-
-const initialMaxData: Max = {
+let maxData: Max = {
   IN_POUNDS: null,
   IN_KILOGRAMS: null,
 }
 
-
-
 const OneRepMaxPage = () => {
-  const [unitOfMeasure, setUnitOfMeasure] = useState<WeightUnit>("LBS");
   const [weight, setWeight] = useState<string>("");
   const [reps, setReps] = useState<string>("");
 
@@ -29,33 +20,17 @@ const OneRepMaxPage = () => {
     const actualWeight = parseFloat(weight);
     const actualReps = parseInt(reps);
     const maxInPounds = calculateMax(actualWeight, actualReps);
-    const maxInKG = ConvertToKilograms(actualMax);
+    const maxInKG = ConvertToKilograms(maxInPounds);
 
-    initalMaxData.IN_POUNDS = maxInPounds;
-    initialMaxData.IN_KILOGRAMS = maxInKG;
-
-  }
-
-
-  const changeUnit = () => {
-
-    if (unitOfMeasure == "LBS") {
-      setUnitOfMeasure("KGS");
-      const convertedWeight = ConvertToKilograms(oneRepMax!);
-      setOneRepMax(convertedWeight);
-    } else if (unitOfMeasure == "KGS") {
-      setUnitOfMeasure("LBS");
-      const convertedWeight = ConvertToPounds(oneRepMax!);
-      setOneRepMax(convertedWeight);
+    maxData = {
+      IN_POUNDS: maxInPounds,
+      IN_KILOGRAMS: maxInKG,
     }
 
   }
 
-
-
-
-  const oneRepMaxInPounds = oneRepMax!.IN_POUNDS;
-  const oneRepMaxInKg = oneRepMax!.IN_KILOGRAMS;
+  const oneRepMaxInPounds = maxData!.IN_POUNDS;
+  const oneRepMaxInKg = maxData!.IN_KILOGRAMS;
 
   return (
     // "min-h-screen" makes it full height
@@ -107,34 +82,32 @@ const OneRepMaxPage = () => {
         </div>
 
         {/* Results Section */}
-        {oneRepMax && (
-          <div className="flex flex-col gap-6 animate-in zoom-in-95 duration-300">
-            <div className="bg-card border border-primary rounded-xl p-8 text-center shadow-[0_0_20px_rgba(249,115,22,0.15)]">
-              <p className="text-sm text-muted mb-2">Estimated One Rep Max</p>
-              <p className="text-6xl font-bold text-foreground">
-
-                {oneRepMaxInPounds} <span className="text-2xl text-muted">{oneRepMaxInKg}</span>
-              </p>
-            </div>
-
-            <div className="bg-card border border-border rounded-xl overflow-hidden">
-              <div className="p-4 px-6 border-b border-border bg-white/5">
-                <h3 className="font-semibold text-foreground">Percentage Breakdown</h3>
-              </div>
-              <div className="divide-y divide-border">
-                {percentages.map((pct) => (
-                  <div key={pct} className="flex justify-between px-6 py-4 hover:bg-input transition-colors">
-                    <span className="text-muted">{pct}%</span>
-                    <span className="font-semibold text-foreground">
-                      {getWeightAtPercentage(pct)}
-                      {unitOfMeasure}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
+        (
+        <div className="flex flex-col gap-6 animate-in zoom-in-95 duration-300">
+          <div className="bg-card border border-primary rounded-xl p-8 text-center shadow-[0_0_20px_rgba(249,115,22,0.15)]">
+            <p className="text-sm text-muted mb-2">Estimated One Rep Max</p>
+            <p className="text-6xl font-bold text-foreground">
+              {oneRepMaxInPounds} <span className="text-2xl text-muted">{oneRepMaxInKg}</span>
+            </p>
           </div>
-        )}
+
+          {/* <div className="bg-card border border-border rounded-xl overflow-hidden"> */}
+          {/*    <div className="p-4 px-6 border-b border-border bg-white/5"> */}
+          {/*      <h3 className="font-semibold text-foreground">Percentage Breakdown</h3> */}
+          {/*    </div> */}
+          {/*    <div className="divide-y divide-border"> */}
+          {/*      {percentages.map((pct) => ( */}
+          {/*        <div key={pct} className="flex justify-between px-6 py-4 hover:bg-input transition-colors"> */}
+          {/*          <span className="text-muted">{pct}%</span> */}
+          {/*          <span className="font-semibold text-foreground"> */}
+          {/*            {getWeightAtPercentage(pct)} */}
+          {/*            {unitOfMeasure} */}
+          {/*          </span> */}
+          {/*        </div> */}
+          {/*      ))} */}
+          {/*    </div> */}
+          {/*  </div> */}
+        </div>
       </div>
     </div>
   );
