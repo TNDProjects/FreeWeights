@@ -7,18 +7,35 @@ import { ConvertToPounds, ConvertToKilograms } from "../../utils/units/units.ts"
 
 
 type WeightUnit = "LBS" | "KGS";
+
 type Max = {
-  IN_POUNDS: string,
-  IN_KILOGRAMS: string
+  IN_POUNDS: null | null,
+  IN_KILOGRAMS: number | null
 }
 
-const percentages = [100, 95, 90, 85, 80, 75, 70, 65, 60];
+const initialMaxData: Max = {
+  IN_POUNDS: null,
+  IN_KILOGRAMS: null,
+}
+
+
 
 const OneRepMaxPage = () => {
   const [unitOfMeasure, setUnitOfMeasure] = useState<WeightUnit>("LBS");
   const [weight, setWeight] = useState<string>("");
   const [reps, setReps] = useState<string>("");
-  const [oneRepMax, setOneRepMax] = useState<number | null>(null);
+
+  const calculateOneRepMax = () => {
+    const actualWeight = parseFloat(weight);
+    const actualReps = parseInt(reps);
+    const maxInPounds = calculateMax(actualWeight, actualReps);
+    const maxInKG = ConvertToKilograms(actualMax);
+
+    initalMaxData.IN_POUNDS = maxInPounds;
+    initialMaxData.IN_KILOGRAMS = maxInKG;
+
+  }
+
 
   const changeUnit = () => {
 
@@ -27,28 +44,18 @@ const OneRepMaxPage = () => {
       const convertedWeight = ConvertToKilograms(oneRepMax!);
       setOneRepMax(convertedWeight);
     } else if (unitOfMeasure == "KGS") {
-      console.log("before:", oneRepMax);
       setUnitOfMeasure("LBS");
-      console.log("after: ", oneRepMax);
       const convertedWeight = ConvertToPounds(oneRepMax!);
-      console.log("convertedWeight", convertedWeight);
       setOneRepMax(convertedWeight);
     }
 
   }
 
-  const calculateOneRepMax = () => {
-    const actualWeight = parseFloat(weight);
-    const actualReps = parseInt(reps);
-    const actualMax = calculateMax(actualWeight, actualReps);
-    setOneRepMax(actualMax);
-  }
 
 
-  const getWeightAtPercentage = (percentage: number) => {
-    if (!oneRepMax) return 0;
-    return Math.round((oneRepMax * percentage) / 100 * 10) / 10;
-  };
+
+  const oneRepMaxInPounds = oneRepMax!.IN_POUNDS;
+  const oneRepMaxInKg = oneRepMax!.IN_KILOGRAMS;
 
   return (
     // "min-h-screen" makes it full height
@@ -97,13 +104,6 @@ const OneRepMaxPage = () => {
             onClick={calculateOneRepMax}>
             Calculate {weight} x {reps}
           </Button>
-          <Button
-            id="change-unit=of-measure-button"
-            variant="primary"
-            onClick={changeUnit}
-          >
-            Click here to change to {unitOfMeasure === "LBS" ? "KG" : "LBS"}
-          </Button>
         </div>
 
         {/* Results Section */}
@@ -112,7 +112,8 @@ const OneRepMaxPage = () => {
             <div className="bg-card border border-primary rounded-xl p-8 text-center shadow-[0_0_20px_rgba(249,115,22,0.15)]">
               <p className="text-sm text-muted mb-2">Estimated One Rep Max</p>
               <p className="text-6xl font-bold text-foreground">
-                {oneRepMax} <span className="text-2xl text-muted">{unitOfMeasure}</span>
+
+                {oneRepMaxInPounds} <span className="text-2xl text-muted">{oneRepMaxInKg}</span>
               </p>
             </div>
 
