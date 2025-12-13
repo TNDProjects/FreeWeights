@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Calculator } from "lucide-react";
 import { Button } from "../../components/ui/Button.tsx";
 import { Input } from "../../components/ui/Input.tsx";
+import Percentages from "../OneRepMaxCalculator/Percentages.tsx";
 import calculateMax from "./utils/calculateMax.ts";
 import { ConvertToKilograms } from "../../utils/units/units.ts"
 import type { Max } from "../OneRepMaxCalculator/types/types.ts";
-
 
 const maxData: Max = {
   IN_POUNDS: null,
@@ -34,12 +34,8 @@ const OneRepMaxPage = () => {
   const oneRepMaxInKg = oneRepMax!.IN_KILOGRAMS;
 
   return (
-    // "min-h-screen" makes it full height
-    // "pt-24" adds top padding
     <div className="min-h-screen pt-24 pb-16 px-4">
       <div className="max-w-2xl mx-auto">
-
-        {/* Header */}
         <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
           <div className="inline-flex justify-center items-center w-16 h-16 bg-primary-bg text-primary rounded-xl mb-4">
             <Calculator size={75} />
@@ -51,7 +47,6 @@ const OneRepMaxPage = () => {
         </div>
 
 
-        {/* Calculator Card */}
         <div className="bg-card border rounded-xl p-8 mb-8 shadow-lg">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <Input
@@ -82,18 +77,19 @@ const OneRepMaxPage = () => {
           </Button>
         </div>
 
-        {/* Results Section */}
         <div className="flex flex-col gap-6 animate-in zoom-in-95 duration-300">
           <div className="bg-card border border-primary rounded-xl p-8 text-center shadow-[0_0_20px_rgba(249,115,22,0.15)]">
             <p className="text-sm text-muted mb-2">Estimated One Rep Max</p>
             <p className="text-6xl font-bold text-foreground">
-              {oneRepMaxInPounds} LBS
+              {oneRepMaxInPounds} LBS | {oneRepMaxInKg} KG
             </p>
             <p className="text-6xl font-bold text-foreground">
-              {oneRepMaxInKg} KG
             </p>
           </div>
-
+          {oneRepMaxInPounds && (
+            <Percentages oneRepMax={oneRepMax}>
+            </Percentages>
+          )}
         </div>
       </div>
     </div>

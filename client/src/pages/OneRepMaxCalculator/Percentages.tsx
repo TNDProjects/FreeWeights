@@ -1,6 +1,6 @@
 import type { Max } from "../OneRepMaxCalculator/types/types.ts";
 import { useGetPercentages } from "./utils/useGetPercentages.ts";
-const Percentages = ({ oneRepMax }: { oneRepMax: Max }) => {
+export const Percentages = ({ oneRepMax }: { oneRepMax: Max }) => {
   const percentagesFormatted = useGetPercentages(oneRepMax);
 
   return (
@@ -33,5 +33,4 @@ const Percentages = ({ oneRepMax }: { oneRepMax: Max }) => {
     </div>
   );
 };
-
-export default Percentages;
+export default Percentages; 
