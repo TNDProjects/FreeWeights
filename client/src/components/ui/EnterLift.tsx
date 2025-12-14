@@ -4,14 +4,14 @@ import { Input } from "../../components/ui/Input.tsx";
 interface EnterLiftProps {
   weightLifted: number | string,
   repsCompleted: number | string,
-  onWeightChange: (value: string | number) => void;
-  onRepsChange: (value: string | number) => void;
+  onWeightChange: (value: string) => void;
+  onRepsChange: (value: string) => void;
   buttonText: string;
   onSubmit: () => void;
 }
 
 
-const EnterLift = ({ weightLifted, repsCompleted, onWeightChange, onRepsChange, buttonText, onSubmit }: EnterLiftProps) => {
+export const EnterLift = ({ weightLifted, repsCompleted, onWeightChange, onRepsChange, buttonText, onSubmit }: EnterLiftProps) => {
   return (
     <div className="bg-dark font-mono min-h-screen pt-24 pb-16 ">
       <div className="bg-card border rounded-2xl p-10 max-w-4xl mx-auto">
