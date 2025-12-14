@@ -9,6 +9,7 @@ import type { Max } from "../OneRepMaxCalculator/types/types.ts";
 
 /* 
  * OneRepMaxPage component (subject to renaming)
+ * TODO: Write unit test for OneRepMaxPage and Percentages Components 
  *
  *    weight: User enters in the amount of weight they lifted
  *    reps: User enters the amount of reps (times they lifted the weight)
@@ -18,6 +19,7 @@ import type { Max } from "../OneRepMaxCalculator/types/types.ts";
  *    We default to pounds but we will display in both lbs and kgs.
  *
 */
+
 
 const maxData: Max = {
   IN_POUNDS: null,
@@ -60,8 +62,6 @@ const OneRepMaxPage = () => {
             Enter your lift details to estimate your 1RM
           </p>
         </div>
-
-
         <div className="bg-card border rounded-xl p-8 mb-8 shadow-lg">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <Input
