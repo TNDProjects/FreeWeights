@@ -8,7 +8,6 @@ function App() {
     <>
       <Header />
       <main>
-        <OneRepMaxPage />
         <WorkoutLog />
       </main>
       <Footer />
