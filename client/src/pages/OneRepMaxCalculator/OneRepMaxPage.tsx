@@ -49,8 +49,8 @@ const OneRepMaxPage = () => {
   const oneRepMaxInKg = oneRepMax!.IN_KILOGRAMS;
 
   return (
-    <div className="min-h-screen pt-24 pb-16 px-4">
-      <div className="max-w-2xl mx-auto">
+    <div className="bg-dark font-mono min-h-screen pt-24 pb-16 px-4">
+      <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
           <div className="inline-flex justify-center items-center w-16 h-16 bg-primary-bg text-primary rounded-xl mb-4">
             <Calculator size={75} />
