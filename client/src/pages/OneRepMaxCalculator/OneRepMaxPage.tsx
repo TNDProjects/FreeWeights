@@ -9,6 +9,7 @@ import type { Max } from "../OneRepMaxCalculator/types/types.ts";
 
 /* 
  * OneRepMaxPage component (subject to renaming)
+ * TODO: Write unit test for OneRepMaxPage and Percentages Components 
  *
  *    weight: User enters in the amount of weight they lifted
  *    reps: User enters the amount of reps (times they lifted the weight)
@@ -18,6 +19,7 @@ import type { Max } from "../OneRepMaxCalculator/types/types.ts";
  *    We default to pounds but we will display in both lbs and kgs.
  *
 */
+
 
 const maxData: Max = {
   IN_POUNDS: null,
@@ -51,24 +53,22 @@ const OneRepMaxPage = () => {
   return (
     <div className="bg-dark font-mono min-h-screen pt-24 pb-16 px-4">
       <div className="max-w-3xl mx-auto">
-        <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="text-center mb-12">
           <div className="inline-flex justify-center items-center w-16 h-16 bg-primary-bg text-primary rounded-xl mb-4">
-            <Calculator size={75} />
+            <Calculator size={50} />
           </div>
-          <h1 className="text-4xl font-bold mb-2 text-foreground">One Rep Max Calculator</h1>
-          <p className="text-muted">
+          <h1 className="text-4xl font-bold text-light">one-rep max calculator</h1>
+          <p className="text-grey">
             Enter your lift details to estimate your 1RM
           </p>
         </div>
-
-
         <div className="bg-card border rounded-xl p-8 mb-8 shadow-lg">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <Input
               id="weight-input"
               label="Weight Lifted (lbs)"
               type="number"
-              placeholder="Enter Weight"
+              placeholder="ex. 225"
               value={weight}
               onChange={(event) => setWeight(event.target.value)}
             />
@@ -76,7 +76,7 @@ const OneRepMaxPage = () => {
               id="reps-input"
               label="Reps Performed"
               type="number"
-              placeholder="Enter Reps"
+              placeholder="ex. 8"
               min="1"
               max="20"
               value={reps}

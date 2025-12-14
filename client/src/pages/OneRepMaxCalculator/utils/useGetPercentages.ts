@@ -6,9 +6,12 @@ const getWeightAtPercentage = (max: Max, percentage: number) => {
   if (!max) {
     throw new Error("NO MAX GIVEN");
   }
+
+  const lbs = Math.round((max!.IN_POUNDS! * percentage) / 100 * 10) / 10;
+  const kgs = Math.round((max!.IN_KILOGRAMS! * percentage) / 100 * 10) / 10;
   const maxes = {
-    lb: Math.round((max!.IN_POUNDS! * percentage) / 100 * 10) / 10,
-    kg: Math.round((max!.IN_KILOGRAMS! * percentage) / 100 * 10) / 10,
+    lb: lbs,
+    kg: kgs,
     percentage: percentage
   }
   return maxes;
