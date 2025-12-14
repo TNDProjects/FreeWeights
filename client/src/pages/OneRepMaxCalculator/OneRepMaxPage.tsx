@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Calculator } from "lucide-react";
-import { Button } from "../../components/ui/Button.tsx";
-import { Input } from "../../components/ui/Input.tsx";
+import { EnterLift } from "../../components/ui/EnterLift.tsx";
 import Percentages from "../OneRepMaxCalculator/Percentages.tsx";
 import calculateMax from "./utils/calculateMax.ts";
 import { ConvertToKilograms } from "../../utils/units/units.ts"
@@ -51,10 +50,10 @@ const OneRepMaxPage = () => {
   const oneRepMaxInKg = oneRepMax!.IN_KILOGRAMS;
 
   return (
-    <div className="bg-dark font-mono min-h-screen pt-24 pb-16 px-4">
+    <div className="bg-dark font-mono min-h-screen pt-8  ">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
-          <div className="inline-flex justify-center items-center w-16 h-16 bg-primary-bg text-primary rounded-xl mb-4">
+          <div className="inline-flex justify-center items-center">
             <Calculator size={50} />
           </div>
           <h1 className="text-4xl font-bold text-light">one-rep max calculator</h1>
@@ -62,45 +61,20 @@ const OneRepMaxPage = () => {
             Enter your lift details to estimate your 1RM
           </p>
         </div>
-        <div className="bg-card border rounded-xl p-8 mb-8 shadow-lg">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            <Input
-              id="weight-input"
-              label="Weight Lifted (lbs)"
-              type="number"
-              placeholder="ex. 225"
-              value={weight}
-              onChange={(event) => setWeight(event.target.value)}
-            />
-            <Input
-              id="reps-input"
-              label="Reps Performed"
-              type="number"
-              placeholder="ex. 8"
-              min="1"
-              max="20"
-              value={reps}
-              onChange={(event) => setReps(event.target.value)}
-            />
-          </div>
-
-          <div className="flex flex-col items-center gap-4">
-            <Button
-              id="calculate-1rm-button"
-              variant="outline"
-              onClick={calculateOneRepMax}>
-              calculate
-            </Button>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-6 animate-in zoom-in-95 duration-300">
+        <EnterLift
+          weightLifted={weight}
+          repsCompleted={reps}
+          onWeightChange={setWeight}
+          onRepsChange={setReps}
+          buttonText="calculate"
+          onSubmit={calculateOneRepMax}
+        >
+        </EnterLift>
+        <div className="flex flex-col">
           <div className="bg-card border border-primary rounded-xl p-8 text-center">
-            <p className="text-sm text-muted mb-2">Estimated One Rep Max</p>
-            <p className="text-6xl font-bold text-foreground">
+            <p className="text-mono text-light mb-2">Estimated One Rep Max</p>
+            <p className="text-6xl text-mono text-light">
               {oneRepMaxInPounds} LBS | {oneRepMaxInKg} KG
-            </p>
-            <p className="text-6xl font-bold text-foreground">
             </p>
           </div>
           {oneRepMaxInPounds && (
