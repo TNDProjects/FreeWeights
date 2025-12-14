@@ -13,36 +13,35 @@ const WorkoutLog = () => {
   }
 
   return (
-    <div className="bg-dark font-mono min-h-screen pt-24 pb-16 px-4">
-      <div className="bg-card border rounded-xl p-8 mb-8 shadow-lg">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <div className="bg-dark font-mono min-h-screen pt-24 pb-16 ">
+
+      <div className="bg-card border rounded-2xl p-10 max-w-4xl mx-auto">
+        <div className="max-w-xl mx-auto flex flex-col gap-8">
           <Input
             id="weight-input"
-            label="Weight Lifted (lbs)"
+            label="weight lifted (lbs)"
             type="number"
             placeholder="ex. 225"
             value={liftWeight}
-            onChange={(event) => setLiftWeight(event.target.value)}
+            onChange={(e) => setLiftWeight(e.target.value)}
           />
+
           <Input
             id="reps-input"
-            label="Reps Performed"
+            label="reps performed (1 – 20)"
             type="number"
             placeholder="ex. 8"
             min="1"
             max="20"
             value={liftReps}
-            onChange={(event) => setLiftReps(event.target.value)}
+            onChange={(e) => setLiftReps(e.target.value)}
           />
-        </div>
 
-        <div className="flex flex-col items-center gap-4">
-          <Button
-            id="enterlift"
-            variant="outline"
-            onClick={enterLift}>
-            enter lift
-          </Button>
+          <div className="pt-4 flex justify-center">
+            <Button variant="outline" onClick={enterLift}>
+              calculate
+            </Button>
+          </div>
         </div>
       </div>
     </div>

@@ -1,51 +1,45 @@
-import { useState } from "react";
 import { Button } from "../../components/ui/Button.tsx";
 import { Input } from "../../components/ui/Input.tsx";
 
 interface EnterLiftProps {
+  weightLifted: number | string,
+  repsCompleted: number | string,
+  onWeightChange: (value: string | number) => void;
+  onRepsChange: (value: string | number) => void;
   buttonText: string;
-  handleClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onSubmit: () => void;
 }
 
 
-const EnterLift = ({ buttonText, handleClick }: EnterLiftProps) => {
-  const [liftWeight, setLiftWeight] = useState<string>("");
-  const [liftReps, setLiftReps] = useState<string>("");
-
-  const enterLift = () => {
-    console.log("entered lift");
-  }
-
+const EnterLift = ({ weightLifted, repsCompleted, onWeightChange, onRepsChange, buttonText, onSubmit }: EnterLiftProps) => {
   return (
-
-    <div className="bg-card border rounded-xl p-8 mb-8 shadow-lg">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <Input
-          id="weight-input"
-          label="Weight Lifted (lbs)"
-          type="number"
-          placeholder="Enter Weight"
-          value={liftWeight}
-          onChange={(event) => setLiftWeight(event.target.value)}
-        />
-        <Input
-          id="reps-input"
-          label="Reps Performed"
-          type="number"
-          placeholder="Enter Reps"
-          min="1"
-          max="20"
-          value={liftReps}
-          onChange={(event) => setLiftReps(event.target.value)}
-        />
-      </div>
-      <div className="flex flex-col items-center gap-4">
-        <Button
-          id="enterlift"
-          variant="outline"
-          onClick={handleClick}>
-          {buttonText}
-        </Button>
+    <div className="bg-dark font-mono min-h-screen pt-24 pb-16 ">
+      <div className="bg-card border rounded-2xl p-10 max-w-4xl mx-auto">
+        <div className="max-w-xl mx-auto flex flex-col gap-8">
+          <Input
+            id="weight-input"
+            label="weight lifted (lbs)"
+            type="number"
+            placeholder="ex. 225"
+            value={weightLifted}
+            onChange={(e) => onWeightChange(e.target.value)}
+          />
+          <Input
+            id="reps-input"
+            label="reps performed"
+            type="number"
+            placeholder="ex. 8"
+            min="1"
+            max="50"
+            value={repsCompleted}
+            onChange={(e) => onRepsChange(e.target.value)}
+          />
+          <div className="pt-4 flex justify-center">
+            <Button variant="outline" onClick={onSubmit}>
+              {buttonText}
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   )
