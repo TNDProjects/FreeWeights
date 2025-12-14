@@ -5,8 +5,8 @@ import { Input } from "../../components/ui/Input.tsx";
 
 
 const WorkoutLog = () => {
-  const [weight, setWeight] = useState<string>("");
-  const [reps, setReps] = useState<string>("");
+  const [liftWeight, setLiftWeight] = useState<string>("");
+  const [liftReps, setLiftReps] = useState<string>("");
 
   const enterLift = () => {
     console.log("entered lift");
@@ -21,8 +21,8 @@ const WorkoutLog = () => {
           label="Weight Lifted (lbs)"
           type="number"
           placeholder="Enter Weight"
-          value={weight}
-          onChange={(event) => setWeight(event.target.value)}
+          value={liftWeight}
+          onChange={(event) => setLiftWeight(event.target.value)}
         />
         <Input
           id="reps-input"
@@ -31,8 +31,8 @@ const WorkoutLog = () => {
           placeholder="Enter Reps"
           min="1"
           max="20"
-          value={reps}
-          onChange={(event) => setReps(event.target.value)}
+          value={liftReps}
+          onChange={(event) => setLiftReps(event.target.value)}
         />
       </div>
 
