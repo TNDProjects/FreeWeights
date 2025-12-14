@@ -84,16 +84,18 @@ const OneRepMaxPage = () => {
             />
           </div>
 
-          <Button
-            id="calculate-1rm-button"
-            variant="primary"
-            onClick={calculateOneRepMax}>
-            Calculate {weight} x {reps}
-          </Button>
+          <div className="flex flex-col items-center gap-4">
+            <Button
+              id="calculate-1rm-button"
+              variant="outline"
+              onClick={calculateOneRepMax}>
+              calculate
+            </Button>
+          </div>
         </div>
 
         <div className="flex flex-col gap-6 animate-in zoom-in-95 duration-300">
-          <div className="bg-card border border-primary rounded-xl p-8 text-center shadow-[0_0_20px_rgba(249,115,22,0.15)]">
+          <div className="bg-card border border-primary rounded-xl p-8 text-center">
             <p className="text-sm text-muted mb-2">Estimated One Rep Max</p>
             <p className="text-6xl font-bold text-foreground">
               {oneRepMaxInPounds} LBS | {oneRepMaxInKg} KG
