@@ -11,7 +11,7 @@ export const Input = ({ label, id, className, ...props }: InputProps) => {
       {label && (
         <label
           htmlFor={id}
-          className="text-base font-medium text-foreground tracking-wide"
+          className="text-base font-medium text-grey tracking-wide"
         >
           {label}
         </label>
@@ -22,7 +22,7 @@ export const Input = ({ label, id, className, ...props }: InputProps) => {
         className={`
           h-12
           w-full
-          rounded-lg
+          rounded-md
           bg-[#f1f1f1]
           px-4
           text-base

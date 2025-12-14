@@ -53,12 +53,12 @@ const OneRepMaxPage = () => {
   return (
     <div className="bg-dark font-mono min-h-screen pt-24 pb-16 px-4">
       <div className="max-w-3xl mx-auto">
-        <div className="text-center mb-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="text-center mb-12">
           <div className="inline-flex justify-center items-center w-16 h-16 bg-primary-bg text-primary rounded-xl mb-4">
-            <Calculator size={75} />
+            <Calculator size={50} />
           </div>
-          <h1 className="text-4xl font-bold mb-2 text-foreground">One Rep Max Calculator</h1>
-          <p className="text-muted">
+          <h1 className="text-4xl font-bold text-light">one-rep max calculator</h1>
+          <p className="text-grey">
             Enter your lift details to estimate your 1RM
           </p>
         </div>
@@ -68,7 +68,7 @@ const OneRepMaxPage = () => {
               id="weight-input"
               label="Weight Lifted (lbs)"
               type="number"
-              placeholder="Enter Weight"
+              placeholder="ex. 225"
               value={weight}
               onChange={(event) => setWeight(event.target.value)}
             />
@@ -76,7 +76,7 @@ const OneRepMaxPage = () => {
               id="reps-input"
               label="Reps Performed"
               type="number"
-              placeholder="Enter Reps"
+              placeholder="ex. 8"
               min="1"
               max="20"
               value={reps}
