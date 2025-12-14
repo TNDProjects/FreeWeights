@@ -13,7 +13,7 @@ interface EnterLiftProps {
 
 export const EnterLift = ({ weightLifted, repsCompleted, onWeightChange, onRepsChange, buttonText, onSubmit }: EnterLiftProps) => {
   return (
-    <div className="bg-dark font-mono min-h-screen pt-24 pb-16 ">
+    <div className="bg-dark font-mono min-h-screen pt-8">
       <div className="bg-card border rounded-2xl p-10 max-w-4xl mx-auto">
         <div className="max-w-xl mx-auto flex flex-col gap-8">
           <Input
