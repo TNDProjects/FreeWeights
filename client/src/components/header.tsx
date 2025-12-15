@@ -1,16 +1,17 @@
-import React from 'react';
-
+import { Link } from 'react-router-dom';
 
 function Header() {
   return (
     <header className="bg-dark text-light border-b border-light">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+      <div className=" px-4 sm:px-6 lg:px-12">
+        <div className="flex justify-between justify-center items-center h-16">
 
-          <div className="flex items-center">
-            <h1 className="font-mono text-xl">
-              freeweights
-            </h1>
+          <div className=" flex items-center">
+            <Link to="/">
+              <h1 className="font-mono text-xl">
+                freeweights.
+              </h1>
+            </Link>
           </div>
 
           <div className="hidden md:block">
