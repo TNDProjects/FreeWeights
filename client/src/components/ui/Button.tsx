@@ -14,9 +14,9 @@ export const Button = ({
 
   const variants = {
     outline:
-      "bg-transparent border border-white text-white hover:bg-white/5",
+      "border border-white text-white hover:bg-white/5",
     ghost:
-      "bg-transparent text-muted hover:text-white hover:bg-white/5",
+      "text-muted hover:text-white hover:bg-white/5",
   };
 
   return (

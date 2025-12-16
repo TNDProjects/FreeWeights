@@ -15,7 +15,7 @@ export default {
       },
       colors: {
         transparent: 'transparent',
-        dark: 'rgba(20, 20, 20, 1)',
+        dark: 'rgba(18, 18, 18, 1)',
         light: '#EAEAEA',
         grey: '#757575',
       }, 

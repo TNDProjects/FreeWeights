@@ -2,14 +2,14 @@ import { Link } from 'react-router-dom';
 
 function Header() {
   return (
-    <header className="bg-dark text-light border-b border-light">
+    <header className="text-light border-b border-light">
       <div className=" px-4 sm:px-6 lg:px-12">
         <div className="flex justify-between justify-center items-center h-16">
 
           <div className=" flex items-center">
             <Link to="/">
               <h1 className="font-mono text-xl">
-                freeweights.
+                freeweights
               </h1>
             </Link>
           </div>

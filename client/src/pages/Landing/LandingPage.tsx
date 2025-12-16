@@ -7,37 +7,41 @@ import { ChevronRight } from 'lucide-react';
 
 function LandingPage() {
   return (
-    <div className="min-h-screen bg-dark text-light font-mono flex flex-col items-center">
-      <main className="max-w-3xl flex-1 flex flex-col px-6">
-        <section className="flex-1 flex flex-col justify-center py-48">
+    <div className="min-h-screen font-mono flex flex-col items-center">
+      <main className="max-w-3xl flex-1 flex flex-col items-center px-6">
+
+        {/* header section */}
+        <section className="w-full flex-1 flex flex-col justify-center py-48" id="header-section">
           <h2 className="text-3xl lg:text-4xl leading-tight mb-8">
             your <u>all-in-one</u><br/>
             fitness and<br/>
             nutrition<br/>
             toolkit.
           </h2>
-          
           <Link to="/signup" className="bg-light text-dark text-m tracking-tight px-5 py-2 rounded w-fit hover:bg-grey hover:text-light transition-colors cursor-pointer">
             get started
           </Link>
         </section>
 
         {/* about section */}
-        <section className="py-8">
+        <section className="" id="about-section">
         <h3 className="text-sm text-grey mb-1">about</h3>
-          <p className="text-m tracking-tight">
-            <i>freeweights</i> is a free, open-source, minimalistic web app for tracking your daily fitness. log workouts, complete with tools to assist you in workouts, calculate macros, and achieve your goals.
+          <p className="text-lg tracking-tight">
+            <i>freeweights</i> is a free, open-source, minimalistic web app for tracking your daily fitness and nutrition — complete with tools to assist you in workouts, calculate macros, and track your progress toward your goals.
           </p>
         </section>
 
+        {/* */}
+        <div className="bg-grey my-20 w-9/12 h-px"></div>
+
         {/* tools section */}
-        <section className="py-24">
+        <section className="w-full" id="tools-section">
           <h3 className="text-sm text-grey mb-1">tools</h3>
           
           <div className="space-y-3">
             <Link 
               to="/log" 
-              className="flex items-center justify-between border border-light text-light rounded-lg px-4 py-3 hover:border-grey hover:text-grey transition-colors group"
+              className="flex items-center justify-between border border-light rounded-lg px-4 py-3 hover:border-grey hover:text-grey transition-colors group"
             >
               <div className="flex items-center gap-4">
                 <CalendarDays />
