@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { EnterLift } from "../../components/ui/EnterLift.tsx";
 
-const WorkoutLog = () => {
+const WorkoutLogEntry = () => {
   const [weightLifted, setWeightLifted] = useState<string>("");
   const [repsCompleted, setRepsCompleted] = useState<string>("");
 
@@ -22,4 +22,4 @@ const WorkoutLog = () => {
     </EnterLift>
   )
 }
-export default WorkoutLog;
+export default WorkoutLogEntry;
