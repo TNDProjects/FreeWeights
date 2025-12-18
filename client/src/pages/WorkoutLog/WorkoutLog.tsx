@@ -1,13 +1,25 @@
 import { useState } from "react";
 import { EnterLift } from "../../components/ui/EnterLift.tsx";
 
+const testObj = [];
+
 const WorkoutLog = () => {
   const [weightLifted, setWeightLifted] = useState<string>("");
   const [repsCompleted, setRepsCompleted] = useState<string>("");
 
 
+
   const enterLift = () => {
-    console.log("entered lift");
+    const normalizeNumbers = (weight: string, reps: string) => {
+      const newWeight: number = parseInt(weight);
+      const newReps: number = parseInt(reps);
+      return { newWeight, newReps }
+
+    }
+    const liftObj = normalizeNumbers(weightLifted, repsCompleted)
+
+    testObj.push(liftObj)
+    console.log(testObj);
   }
 
   return (
