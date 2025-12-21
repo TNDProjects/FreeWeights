@@ -2,8 +2,10 @@ import { Button } from "../../components/ui/Button.tsx";
 import { Input } from "../../components/ui/Input.tsx";
 
 interface EnterLiftProps {
+  liftName: string,
   weightLifted: number | string,
   repsCompleted: number | string,
+  onNameChange: (value: string) => void;
   onWeightChange: (value: string) => void;
   onRepsChange: (value: string) => void;
   buttonText: string;
@@ -11,11 +13,19 @@ interface EnterLiftProps {
 }
 
 
-export const EnterLift = ({ weightLifted, repsCompleted, onWeightChange, onRepsChange, buttonText, onSubmit }: EnterLiftProps) => {
+export const EnterLift = ({ liftName, weightLifted, repsCompleted, onNameChange, onWeightChange, onRepsChange, buttonText, onSubmit }: EnterLiftProps) => {
   return (
     <div className="font-mono pt-8">
       <div className="bg-card border rounded-2xl p-10 max-w-4xl mx-auto">
         <div className="max-w-xl mx-auto flex flex-col gap-8">
+          <Input
+            id="liftName-input"
+            label="Name of Exercise"
+            type="string"
+            placeholder="ex. Deadlift"
+            value={liftName}
+            onChange={(e) => onNameChange(e.target.value)}
+          />
           <Input
             id="weight-input"
             label="weight lifted (lbs)"
