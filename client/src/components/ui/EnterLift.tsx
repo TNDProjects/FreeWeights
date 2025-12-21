@@ -9,14 +9,17 @@ interface EnterLiftProps {
   onWeightChange: (value: string) => void;
   onRepsChange: (value: string) => void;
   buttonText: string;
-  onSubmit: () => void;
+  onSubmit: (event: React.FormEvent) => void;
 }
 
 
 export const EnterLift = ({ liftName, weightLifted, repsCompleted, onNameChange, onWeightChange, onRepsChange, buttonText, onSubmit }: EnterLiftProps) => {
   return (
     <div className="font-mono pt-8">
-      <div className="bg-card border rounded-2xl p-10 max-w-4xl mx-auto">
+      <form
+        className="bg-card border rounded-2xl p-10 max-w-4xl mx-auto"
+        onSubmit={onSubmit}
+      >
         <div className="max-w-xl mx-auto flex flex-col gap-8">
           <Input
             id="liftName-input"
@@ -45,12 +48,12 @@ export const EnterLift = ({ liftName, weightLifted, repsCompleted, onNameChange,
             onChange={(e) => onRepsChange(e.target.value)}
           />
           <div className="pt-4 flex justify-center">
-            <Button variant="outline" onClick={onSubmit}>
+            <Button variant="outline" type="submit">
               {buttonText}
             </Button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   )
 }
