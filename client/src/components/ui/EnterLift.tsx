@@ -21,7 +21,7 @@ export const EnterLift = ({ liftName, weightLifted, repsCompleted, onNameChange,
           <Input
             id="liftName-input"
             label="Name of Exercise"
-            type="string"
+            type="text"
             placeholder="ex. Deadlift"
             value={liftName}
             onChange={(e) => onNameChange(e.target.value)}
