@@ -3,50 +3,60 @@ import { Button } from "../../components/ui/Button.tsx";
 import { EnterLift } from "../../components/ui/EnterLift.tsx";
 
 type LiftSet = {
-  weight: number | null
-  reps: number | null
-  name: string | null
+  weight: number | string
+  reps: number | string
+  name: string
 }
 const testObj: LiftSet[] = [];
 
-const normalizeLiftSet = (weight: string, reps: string): LiftSet => {
+const normalizeLiftSet = (set: LiftSet): LiftSet => {
 
-  const normalizedWeight: number = parseInt(weight);
-  const normalizedReps: number = parseInt(reps);
-  //TODO: Add noramlization for the name of the lift
+  // If weight or reps are already a number, just use it. If it is a string, normalize it. 
+  const normalizedWeight: number = typeof set.weight === "string" ? parseInt(set.weight) : set.weight;
+  const normalizedReps: number = typeof set.reps === "string" ? parseInt(set.reps) : set.reps;
+  const normalizedName: string = set.name; //TODO: Add normalization for the name of the lift.
 
   const normalizedSet: LiftSet = {
     weight: normalizedWeight,
     reps: normalizedReps,
-    name: "test"
+    name: normalizedName
   }
 
   return normalizedSet;
 }
 
-const enterLiftObj = async (weight: string, reps: string): Promise<void> => {
+
+const enterLiftObj = async (set: LiftSet): Promise<void> => {
   try {
-    const liftObj: LiftSet = normalizeLiftSet(weight, reps)
+    const liftObj: LiftSet = normalizeLiftSet(set)
     testObj.push(liftObj)
   } catch (error) {
     console.error("Error pushing lift: ", error);
   } finally {
     console.log("Log: ", testObj)
   }
+
 }
+
+
 
 const WorkoutLog = () => {
   const [liftName, setLiftName] = useState<string>("");
   const [weightLifted, setWeightLifted] = useState<string>("");
   const [repsCompleted, setRepsCompleted] = useState<string>("");
   const [isEnteringLift, setIsEnteringLift] = useState<boolean>(false);
+  const actualLiftObj: LiftSet = {
+    name: liftName,
+    weight: weightLifted,
+    reps: repsCompleted
+  }
 
   const enterLift = async () => {
     if (!isEnteringLift) {
       throw new Error("isEnteringLift is not true!");
     }
     else {
-      enterLiftObj(weightLifted, repsCompleted)
+      enterLiftObj(actualLiftObj)
       setIsEnteringLift(false);
     }
   }
