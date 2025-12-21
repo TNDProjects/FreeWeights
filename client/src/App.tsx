@@ -10,7 +10,7 @@ import ScrollToTop from './components/ScrollToTop';
 function App() {
   return (
     <BrowserRouter>
-    <ScrollToTop />
+      <ScrollToTop />
       <div className="bg-dark text-light flex flex-col min-h-screen">
         <Header />
         <main className="flex-grow">
