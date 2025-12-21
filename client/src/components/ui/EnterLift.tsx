@@ -15,15 +15,15 @@ interface EnterLiftProps {
 
 export const EnterLift = ({ liftName, weightLifted, repsCompleted, onNameChange, onWeightChange, onRepsChange, buttonText, onSubmit }: EnterLiftProps) => {
   return (
-    <div className="font-mono pt-8">
+    <div className="">
       <form
-        className="bg-card border rounded-2xl p-10 max-w-4xl mx-auto"
+        className="bg-card border rounded-2xl p-10 max-w-3xl mx-auto"
         onSubmit={onSubmit}
       >
         <div className="max-w-xl mx-auto flex flex-col gap-8">
           <Input
             id="liftName-input"
-            label="Name of Exercise"
+            label="exercise name"
             type="text"
             placeholder="ex. Deadlift"
             value={liftName}
