@@ -1,45 +1,44 @@
-// src/pages/WorkoutLog/LogTable.tsx
-import { WorkoutLogData } from "./types";
+import type { WorkoutLogData } from "./types/types.ts";
 
 interface LogTableProps {
   data: WorkoutLogData;
 }
 
-export const LogTable = ({ data }: LogTableProps) => {
+export const WorkoutLogTable = ({ data }: LogTableProps) => {
   const exercises = Object.keys(data);
 
   return (
-    <div className="w-full overflow-hidden rounded-2xl border border-white/10 bg-card/50 backdrop-blur-sm">
-      <table className="w-full text-left font-mono border-collapse">
-        <thead>
-          <tr className="border-b border-white/10 bg-white/5 text-grey uppercase text-[10px] tracking-widest">
-            <th className="px-6 py-4 font-medium">Exercise</th>
-            <th className="px-6 py-4 font-medium">Sets / History</th>
+    <div className="w-full overflow-hidden rounded-xl border border-border bg-card">
+      <table className="w-full text-left font-mono">
+        <thead className="bg-white/5 border-b border-border">
+          <tr className="text-grey uppercase text-[10px] tracking-widest">
+            <th className="px-6 py-4 font-medium text-left">Exercise</th>
+            <th className="px-6 py-4 font-medium text-left">Sets History</th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-white/5">
+        <tbody className="divide-y divide-border">
           {exercises.length === 0 ? (
             <tr>
-              <td colSpan={2} className="px-6 py-12 text-center text-grey italic">
-                No sets recorded today.
+              <td colSpan={2} className="px-6 py-10 text-center text-grey italic">
+                No sets recorded yet.
               </td>
             </tr>
           ) : (
             exercises.map((name) => (
               <tr key={name} className="hover:bg-white/[0.02] transition-colors">
-                <td className="px-6 py-4 align-top">
-                  <span className="text-light font-bold text-sm">{name}</span>
+                <td className="px-6 py-4 align-top font-bold text-light min-w-[140px]">
+                  {name}
                 </td>
                 <td className="px-6 py-4">
                   <div className="flex flex-wrap gap-2">
-                    {data[name].map((set, index) => (
+                    {data[name].map((set, idx) => (
                       <div
-                        key={index}
-                        className="group relative flex items-center gap-1.5 px-3 py-1 rounded-lg bg-input border border-white/5 text-xs text-light"
+                        key={idx}
+                        className="bg-input border border-border px-3 py-1 rounded-md text-xs text-light flex items-center gap-1"
                       >
-                        <span className="text-grey text-[9px] mr-1">{index + 1}</span>
-                        <span className="font-bold">{set.weight}</span>
-                        <span className="text-grey text-[10px]">x</span>
+                        <span className="text-grey text-[10px] uppercase">S{idx + 1}</span>
+                        <span className="font-bold ml-1">{set.weight}</span>
+                        <span className="text-grey">x</span>
                         <span>{set.reps}</span>
                       </div>
                     ))}
