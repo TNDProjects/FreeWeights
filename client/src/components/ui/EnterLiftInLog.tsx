@@ -1,20 +1,23 @@
 import { Button } from "./Button.tsx";
 import { Input } from "./Input.tsx";
 
-
-interface EnterLiftProps {
+interface EnterLiftInLogProps {
   liftName: string,
-  numberOfReps: number | string,
+  numberOfSets: number | string,
+  repsCompleted: number | string,
   weightLifted: number | string,
+  notes: string,
   onNameChange: (value: string) => void;
+  onSetsChange: (value: string) => void;
   onRepsChange: (value: string) => void;
   onWeightChange: (value: string) => void;
+  onNotesChange: (value: string) => void;
   buttonText: string;
   onSubmit: (event: React.FormEvent) => void;
 }
 
 
-export const EnterLift = ({ liftName, numberOfReps, weightLifted, onNameChange, onRepsChange, onWeightChange, buttonText, onSubmit }: EnterLiftProps) => {
+export const EnterLiftInLog = ({ liftName, numberOfSets, repsCompleted, weightLifted, notes, onNameChange, onSetsChange, onRepsChange, onNotesChange, onWeightChange, buttonText, onSubmit }: EnterLiftInLogProps) => {
   return (
     <div className="">
       <form
@@ -31,6 +34,24 @@ export const EnterLift = ({ liftName, numberOfReps, weightLifted, onNameChange, 
             onChange={(e) => onNameChange(e.target.value)}
           />
           <Input
+            id="number-of-sets"
+            label="number of sets"
+            type="number"
+            placeholder="ex. 3"
+            value={numberOfSets}
+            onChange={(e) => onSetsChange(e.target.value)}
+          />
+          <Input
+            id="reps-input"
+            label="reps performed"
+            type="number"
+            placeholder="ex. 8"
+            min="1"
+            max="50"
+            value={repsCompleted}
+            onChange={(e) => onRepsChange(e.target.value)}
+          />
+          <Input
             id="weight-input"
             label="weight lifted (lbs)"
             type="number"
@@ -39,12 +60,12 @@ export const EnterLift = ({ liftName, numberOfReps, weightLifted, onNameChange, 
             onChange={(e) => onWeightChange(e.target.value)}
           />
           <Input
-            id="number-of-reps"
-            label="number of reps"
-            type="number"
-            placeholder="ex. 5"
-            value={numberOfReps}
-            onChange={(e) => onRepsChange(e.target.value)}
+            id="notes-input"
+            label="notes"
+            type="text"
+            placeholder="ex. RPE 7, felt pretty easy"
+            value={notes}
+            onChange={(e) => onNotesChange(e.target.value)}
           />
           <div className="pt-4 flex justify-center">
             <Button variant="outline" type="submit">
@@ -56,4 +77,4 @@ export const EnterLift = ({ liftName, numberOfReps, weightLifted, onNameChange, 
     </div>
   )
 }
-export default EnterLift;
+export default EnterLiftInLog;

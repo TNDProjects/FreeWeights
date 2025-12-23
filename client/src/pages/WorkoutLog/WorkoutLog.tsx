@@ -35,7 +35,7 @@ const WorkoutLog = () => {
 
       <div className="mt-4">
         <h3 className="font-mono text-grey text-xs uppercase tracking-widest mb-4 px-1">
-          Today's Training
+          today's training
         </h3>
         <DataTable columns={columns} data={logData} />
       </div>
