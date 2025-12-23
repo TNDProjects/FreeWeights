@@ -27,9 +27,11 @@ const maxData: Max = {
 }
 
 const OneRepMaxPage = () => {
+  const [liftName, setLiftName] = useState<string>("");
   const [weight, setWeight] = useState<string>("");
   const [reps, setReps] = useState<string>("");
   const [oneRepMax, setOneRepMax] = useState<Max>(maxData);
+  const [isEnteringLift, setIsEnteringLift] = useState<boolean>(true);
 
   const calculateOneRepMax = () => {
 
@@ -43,7 +45,8 @@ const OneRepMaxPage = () => {
       IN_POUNDS: maxInPounds,
       IN_KILOGRAMS: maxInKG,
     })
-
+    setIsEnteringLift(false);
+    
   }
 
   // Have these so it's easier to use inside our render
@@ -60,15 +63,19 @@ const OneRepMaxPage = () => {
         description="enter your lift details to estimate your 1RM"
       />
 
-      <EnterLift
-        weightLifted={weight}
-        repsCompleted={reps}
-        onWeightChange={setWeight}
-        onRepsChange={setReps}
-        buttonText="calculate"
-        onSubmit={calculateOneRepMax}
-      />
-
+      {isEnteringLift && (
+        <EnterLift
+          liftName={liftName}
+          weightLifted={weight}
+          numberOfReps={reps}
+          onNameChange={setLiftName}
+          onWeightChange={setWeight}
+          onRepsChange={setReps}
+          buttonText="calculate"
+          onSubmit={calculateOneRepMax}
+        />
+      )}
+      
       {oneRepMaxInPounds && (
         <div className="flex flex-col gap-8 pt-8">
           <div className="border border-primary rounded-xl p-8 text-center">

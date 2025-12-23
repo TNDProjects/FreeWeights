@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "../../components/ui/Button.tsx";
-import { EnterLift } from "../../components/ui/EnterLift.tsx";
+import { EnterLiftInLog } from "../../components/ui/EnterLiftInLog.tsx";
 
 interface WorkoutLogEntryProps {
   onAddSet: (name: string, sets: number, reps: number, weight: number, notes: string) => void;
@@ -50,7 +50,7 @@ const WorkoutLogEntry = ({ onAddSet }: WorkoutLogEntryProps) => {
 
       {isEnteringLift && (
         <div className="animate-entry">
-          <EnterLift
+          <EnterLiftInLog
             liftName={liftName}
             numberOfSets={numberOfSets}
             repsCompleted={repsCompleted}
