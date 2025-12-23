@@ -13,6 +13,8 @@ const WorkoutLogEntry = ({ onAddSet }: WorkoutLogEntryProps) => {
   const [weightLifted, setWeightLifted] = useState<string>("");
   const [notes, setNotes] = useState<string>("");
   const [isEnteringLift, setIsEnteringLift] = useState<boolean>(false);
+  console.log({ repsCompleted, weightLifted });
+
 
   const enterLift = () => {
     if (!liftName || !weightLifted || !repsCompleted) return;

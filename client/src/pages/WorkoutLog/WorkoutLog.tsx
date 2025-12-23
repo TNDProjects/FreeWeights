@@ -9,7 +9,7 @@ import type { WorkoutLogRow } from "./types/types.ts";
 const WorkoutLog = () => {
   const [logData, setLogData] = useState<WorkoutLogRow[]>([]);
 
-  const handleAddSet = (name: string, sets: number, weight: number, reps: number, notes: string) => {
+  const handleAddSet = (name: string, sets: number, reps: number, weight: number, notes: string) => {
     const newSet: WorkoutLogRow = {
       name,
       sets,
@@ -17,6 +17,7 @@ const WorkoutLog = () => {
       weight,
       notes
     };
+    console.log(newSet);
 
     setLogData((prev) => [newSet, ...prev]);
   };
