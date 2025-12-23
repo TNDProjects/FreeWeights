@@ -1,11 +1,21 @@
 import { ColumnDef } from "@tanstack/react-table"
-import type { LiftSet } from "./types/types.ts"
+import type { WorkoutLogRow } from "./types/types.ts"
 
-export const columns: ColumnDef<LiftSet>[] = [
+export const columns: ColumnDef<WorkoutLogRow>[] = [
   {
     accessorKey: "name",
     header: "Exercise",
-    cell: ({ row }) => <span className="font-bold text-light">{row.getValue("name")}</span>,
+    cell: ({ row }) => <span className="font-mono">{row.getValue("name")}</span>,
+  },
+  {
+    accessorKey: "sets",
+    header: "Sets",
+    cell: ({ row }) => <span className="font-mono">{row.getValue("sets")}</span>,
+  },
+  {
+    accessorKey: "reps",
+    header: "Reps",
+    cell: ({ row }) => <div className="font-mono">{row.getValue("reps")}</div>,
   },
   {
     accessorKey: "weight",
@@ -13,8 +23,8 @@ export const columns: ColumnDef<LiftSet>[] = [
     cell: ({ row }) => <div className="font-mono">{row.getValue("weight")} lbs</div>,
   },
   {
-    accessorKey: "reps",
-    header: "Reps",
-    cell: ({ row }) => <div className="font-mono">{row.getValue("reps")}</div>,
+    accessorKey: "notes",
+    header: "notes",
+    cell: ({ row }) => <div className="font-mono">{row.getValue("notes")}</div>,
   },
 ]

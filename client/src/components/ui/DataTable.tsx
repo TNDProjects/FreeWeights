@@ -1,6 +1,4 @@
-// src/// src/components/ui/data-table.tsx
 import {
-  ColumnDef,
   flexRender,
   getCoreRowModel,
   useReactTable,
@@ -14,10 +12,10 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-export function DataTable<TData, TValue>({
+export function DataTable({
   columns,
   data,
-}: DataTableProps<TData, TValue>) {
+}) {
   const table = useReactTable({
     data,
     columns,

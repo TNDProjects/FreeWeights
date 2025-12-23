@@ -3,13 +3,15 @@ import { Button } from "../../components/ui/Button.tsx";
 import { EnterLift } from "../../components/ui/EnterLift.tsx";
 
 interface WorkoutLogEntryProps {
-  onAddSet: (name: string, weight: number, reps: number) => void;
+  onAddSet: (name: string, sets: number, reps: number, weight: number, notes: string) => void;
 }
 
 const WorkoutLogEntry = ({ onAddSet }: WorkoutLogEntryProps) => {
   const [liftName, setLiftName] = useState<string>("");
-  const [weightLifted, setWeightLifted] = useState<string>("");
+  const [numberOfSets, setNumberOfSets] = useState<string>("");
   const [repsCompleted, setRepsCompleted] = useState<string>("");
+  const [weightLifted, setWeightLifted] = useState<string>("");
+  const [notes, setNotes] = useState<string>("");
   const [isEnteringLift, setIsEnteringLift] = useState<boolean>(false);
 
   const enterLift = () => {
@@ -17,12 +19,16 @@ const WorkoutLogEntry = ({ onAddSet }: WorkoutLogEntryProps) => {
 
     onAddSet(
       liftName,
+      parseInt(numberOfSets),
+      parseInt(repsCompleted),
       parseInt(weightLifted),
-      parseInt(repsCompleted)
+      notes,
     );
 
     setWeightLifted("");
     setRepsCompleted("");
+    setNumberOfSets("");
+    setNotes("");
     setIsEnteringLift(false);
   };
 
@@ -44,11 +50,15 @@ const WorkoutLogEntry = ({ onAddSet }: WorkoutLogEntryProps) => {
         <div className="animate-entry">
           <EnterLift
             liftName={liftName}
-            weightLifted={weightLifted}
+            numberOfSets={numberOfSets}
             repsCompleted={repsCompleted}
+            weightLifted={weightLifted}
+            notes={notes}
             onNameChange={setLiftName}
-            onWeightChange={setWeightLifted}
+            onSetsChange={setNumberOfSets}
             onRepsChange={setRepsCompleted}
+            onWeightChange={setWeightLifted}
+            onNotesChange={setNotes}
             buttonText="enter lift"
             onSubmit={enterLift}
           />

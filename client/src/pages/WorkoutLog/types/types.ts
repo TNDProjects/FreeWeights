@@ -1,9 +1,11 @@
-export type LiftSet = {
+export type WorkoutLogRow = {
   name: string;
-  weight: number;
+  sets: number,
   reps: number;
+  weight: number;
+  notes: string;
 };
 
 export type WorkoutLogData = {
-  [exerciseName: string]: LiftSet[];
+  [exerciseName: string]: WorkoutLogRow[];
 };
