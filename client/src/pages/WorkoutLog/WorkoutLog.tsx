@@ -2,20 +2,22 @@ import { useState } from "react";
 import { CalendarDays } from "lucide-react";
 import PageHeader from '../../components/PageHeader';
 import WorkoutLogEntry from "./WorkoutLogEntry.tsx";
-import { WorkoutLogTable } from "./WorkoutLogTable.tsx";
-import type { WorkoutLogData } from "./types/types.ts";
+import { DataTable } from "../../components/ui/data-table.tsx";
+import { columns } from "./columns";
+import type { LiftSet } from "./types/types.ts";
 
 const WorkoutLog = () => {
-  const [logData, setLogData] = useState<WorkoutLogData>({});
+  const [logData, setLogData] = useState<LiftSet[]>([]);
 
   const handleAddSet = (name: string, weight: number, reps: number) => {
-    setLogData((prev) => {
-      const existingSets = prev[name] || [];
-      return {
-        ...prev,
-        [name]: [...existingSets, { weight, reps }],
-      };
-    });
+    const newSet: LiftSet = {
+      name,
+      weight,
+      reps,
+    };
+
+    // Add new set to the top of the list
+    setLogData((prev) => [newSet, ...prev]);
   };
 
   return (
@@ -33,7 +35,7 @@ const WorkoutLog = () => {
         <h3 className="font-mono text-grey text-xs uppercase tracking-widest mb-4 px-1">
           Today's Training
         </h3>
-        <WorkoutLogTable data={logData} />
+        <DataTable columns={columns} data={logData} />
       </div>
     </div>
   );
