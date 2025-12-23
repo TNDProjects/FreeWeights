@@ -3,7 +3,19 @@
 @tailwind components;
 @tailwind utilities;
 
-@keyframes slideUpFade {
+@keyframes slideFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFromRight {
   from {
     opacity: 0;
     transform: translateX(20px);
@@ -15,9 +27,14 @@
   }
 }
 
-.animate-entry {
-  animation: slideUpFade 0.5s ease-out forwards;
+.animate-up {
+  animation: slideFromBottom 0.5s ease-out forwards;
 }
+
+.animate-right {
+  animation: slideFromRight 0.5s ease-out forwards;
+}
+
 
 
 

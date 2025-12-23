@@ -77,17 +77,19 @@ const OneRepMaxPage = () => {
       )}
       
       {oneRepMaxInPounds && (
-        <div className="flex flex-col gap-8 pt-8">
-          <div className="border border-primary rounded-xl p-8 text-center">
-            <p className="text-mono text-light pb-4">
-              your estimated one rep max is:
-            </p>
-            <p className="text-6xl text-mono text-light">
-              {oneRepMaxInPounds} LBS | {oneRepMaxInKg} KG
-            </p>
+        <div className="animate-up">
+          <div className="flex flex-col gap-8 pt-8">
+            <div className="border border-primary rounded-xl p-8 text-center">
+              <p className="text-mono text-light pb-4">
+                your estimated one rep max is:
+              </p>
+              <p className="text-6xl text-mono text-light">
+                {oneRepMaxInPounds} LBS | {oneRepMaxInKg} KG
+              </p>
+            </div>
+            
+            <Percentages oneRepMax={oneRepMax} />
           </div>
-
-          <Percentages oneRepMax={oneRepMax} />
         </div>
       )}
     </div>
