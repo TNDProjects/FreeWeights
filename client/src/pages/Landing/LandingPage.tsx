@@ -7,12 +7,11 @@ import { ChevronRight } from 'lucide-react';
 
 function LandingPage() {
   return (
-    <div className="min-h-screen font-mono flex flex-col items-center">
-      <main className="max-w-3xl flex-1 flex flex-col items-center px-6">
+    <div className="w-full max-w-3xl flex flex-col items-center">
 
         {/* header section */}
-        <section className="w-full flex-1 flex flex-col justify-center py-48" id="header-section">
-          <h2 className="text-3xl lg:text-4xl leading-tight mb-8">
+        <section className="w-full flex flex-col justify-center py-48" id="header-section">
+          <h2 className="text-3xl lg:text-4xl mb-8">
             your <u>all-in-one</u><br/>
             fitness and<br/>
             nutrition<br/>
@@ -25,13 +24,13 @@ function LandingPage() {
 
         {/* about section */}
         <section className="" id="about-section">
-        <h3 className="text-sm text-grey mb-1">about</h3>
-          <p className="text-lg tracking-tight">
-            <i>freeweights</i> is a free, open-source, minimalistic web app for tracking your daily fitness and nutrition — complete with tools to assist you in workouts, calculate macros, and track your progress toward your goals.
-          </p>
+          <h3 className="text-sm text-grey mb-1">about</h3>
+            <p className="text-lg tracking-tight">
+              <i>freeweights</i> is a free, open-source, minimalistic web app for tracking your daily fitness and nutrition — complete with tools to assist you in workouts, calculate macros, and track your progress toward your goals.
+            </p>
         </section>
 
-        {/* */}
+        {/* spacer */}
         <div className="bg-grey my-20 w-9/12 h-px"></div>
 
         {/* tools section */}
@@ -96,7 +95,6 @@ function LandingPage() {
             </Link>
           </div>
         </section>
-      </main>
     </div>
   );
 }

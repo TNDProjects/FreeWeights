@@ -2,91 +2,72 @@ import { useState } from "react";
 import { Button } from "../../components/ui/Button.tsx";
 import { EnterLift } from "../../components/ui/EnterLift.tsx";
 
-type LiftSet = {
-  weight: number | string
-  reps: number | string
-  name: string
-}
-const testObj: LiftSet[] = [];
-
-const normalizeLiftSet = (set: LiftSet): LiftSet => {
-
-  // If weight or reps are already a number, just use it. If it is a string, normalize it. 
-  const normalizedWeight: number = typeof set.weight === "string" ? parseInt(set.weight) : set.weight;
-  const normalizedReps: number = typeof set.reps === "string" ? parseInt(set.reps) : set.reps;
-  const normalizedName: string = set.name; //TODO: Add normalization for the name of the lift.
-
-  const normalizedSet: LiftSet = {
-    weight: normalizedWeight,
-    reps: normalizedReps,
-    name: normalizedName
-  }
-
-  return normalizedSet;
+interface WorkoutLogEntryProps {
+  onAddSet: (name: string, sets: number, reps: number, weight: number, notes: string) => void;
 }
 
-
-const enterLiftObj = async (set: LiftSet): Promise<void> => {
-  try {
-    const liftObj: LiftSet = normalizeLiftSet(set)
-    testObj.push(liftObj)
-  } catch (error) {
-    console.error("Error pushing lift: ", error);
-  } finally {
-    console.log("Log: ", testObj)
-  }
-
-}
-
-
-
-const WorkoutLogEntry = () => {
+const WorkoutLogEntry = ({ onAddSet }: WorkoutLogEntryProps) => {
   const [liftName, setLiftName] = useState<string>("");
-  const [weightLifted, setWeightLifted] = useState<string>("");
+  const [numberOfSets, setNumberOfSets] = useState<string>("");
   const [repsCompleted, setRepsCompleted] = useState<string>("");
+  const [weightLifted, setWeightLifted] = useState<string>("");
+  const [notes, setNotes] = useState<string>("");
   const [isEnteringLift, setIsEnteringLift] = useState<boolean>(false);
-  const actualLiftObj: LiftSet = {
-    name: liftName,
-    weight: weightLifted,
-    reps: repsCompleted
-  }
+  console.log({ repsCompleted, weightLifted });
 
-  const enterLift = async () => {
-    if (!isEnteringLift) {
-      throw new Error("isEnteringLift is not true!");
-    }
-    else {
-      enterLiftObj(actualLiftObj)
-      setIsEnteringLift(false);
-    }
-  }
+
+  const enterLift = () => {
+    if (!liftName || !weightLifted || !repsCompleted) return;
+
+    onAddSet(
+      liftName,
+      parseInt(numberOfSets),
+      parseInt(repsCompleted),
+      parseInt(weightLifted),
+      notes,
+    );
+
+    setWeightLifted("");
+    setRepsCompleted("");
+    setNumberOfSets("");
+    setNotes("");
+    setIsEnteringLift(false);
+  };
 
   return (
     <>
       <div className="pt-4 flex justify-center">
-        <Button variant="outline" onClick={() => {
-          setIsEnteringLift(true)
-        }}>
-          Add Set
-        </Button>
+        {!isEnteringLift ? (
+          <Button variant="outline" onClick={() => setIsEnteringLift(true)}>
+            Add Set
+          </Button>
+        ) : (
+          <Button variant="outline" onClick={() => setIsEnteringLift(false)}>
+            Cancel
+          </Button>
+        )}
       </div>
 
       {isEnteringLift && (
         <div className="animate-entry">
           <EnterLift
             liftName={liftName}
-            weightLifted={weightLifted}
+            numberOfSets={numberOfSets}
             repsCompleted={repsCompleted}
+            weightLifted={weightLifted}
+            notes={notes}
             onNameChange={setLiftName}
-            onWeightChange={setWeightLifted}
+            onSetsChange={setNumberOfSets}
             onRepsChange={setRepsCompleted}
+            onWeightChange={setWeightLifted}
+            onNotesChange={setNotes}
             buttonText="enter lift"
             onSubmit={enterLift}
-          >
-          </EnterLift>
+          />
         </div>
       )}
     </>
-  )
-}
+  );
+};
+
 export default WorkoutLogEntry;

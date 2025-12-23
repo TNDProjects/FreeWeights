@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
+import { Menu } from 'lucide-react';
 
 function Header() {
   return (
-    <header className="text-light border-b border-light">
-      <div className=" px-4 sm:px-6 lg:px-12">
+      <header className="px-4 sm:px-6 lg:px-12 border-b border-light">
         <div className="flex justify-between justify-center items-center h-16">
 
           <div className=" flex items-center">
@@ -15,19 +15,16 @@ function Header() {
           </div>
 
           <div className="hidden md:block">
-            <button className="font-mono text-sm bg-light text-dark px-4 py-2 rounded hover:bg-grey hover:text-light transition-colors">
+            <button className="text-sm bg-light text-dark px-4 py-2 rounded hover:bg-grey hover:text-light transition-colors">
               sign up
             </button>
           </div>
 
           <button className="md:hidden text-light">
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+            <Menu size={36}/>
           </button>
         </div>
-      </div>
-    </header>
+      </header>
   );
 }
 

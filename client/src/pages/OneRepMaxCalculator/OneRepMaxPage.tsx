@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Calculator } from "lucide-react";
+import { Weight } from "lucide-react";
+import PageHeader from '../../components/PageHeader';
 import { EnterLift } from "../../components/ui/EnterLift.tsx";
 import Percentages from "../OneRepMaxCalculator/Percentages.tsx";
 import calculateMax from "./utils/calculateMax.ts";
@@ -51,44 +52,37 @@ const OneRepMaxPage = () => {
 
 
   return (
-    <div className="bg-dark font-mono min-h-screen pt-8">
-      <div className="max-w-3xl mx-auto">
-        <div className="text-center mb-12">
-          <div className="inline-flex justify-center items-center">
-            <Calculator size={50} />
+    <div className="w-full max-w-3xl">
+      <PageHeader 
+        line1="one-rep max" 
+        line2="calculator" 
+        icon={<Weight size={36}/>} 
+        description="enter your lift details to estimate your 1RM"
+      />
+
+      <EnterLift
+        weightLifted={weight}
+        repsCompleted={reps}
+        onWeightChange={setWeight}
+        onRepsChange={setReps}
+        buttonText="calculate"
+        onSubmit={calculateOneRepMax}
+      />
+
+      {oneRepMaxInPounds && (
+        <div className="flex flex-col gap-8 pt-8">
+          <div className="border border-primary rounded-xl p-8 text-center">
+            <p className="text-mono text-light pb-4">
+              your estimated one rep max is:
+            </p>
+            <p className="text-6xl text-mono text-light">
+              {oneRepMaxInPounds} LBS | {oneRepMaxInKg} KG
+            </p>
           </div>
-          <h1 className="text-4xl font-bold text-light">
-            one-rep max calculator
-          </h1>
-          <p className="text-grey">
-            Enter your lift details to estimate your 1RM
-          </p>
+
+          <Percentages oneRepMax={oneRepMax} />
         </div>
-
-        <EnterLift
-          weightLifted={weight}
-          repsCompleted={reps}
-          onWeightChange={setWeight}
-          onRepsChange={setReps}
-          buttonText="calculate"
-          onSubmit={calculateOneRepMax}
-        />
-
-        {oneRepMaxInPounds && (
-          <div className="flex flex-col gap-8 pt-8">
-            <div className="border border-primary rounded-xl p-8 text-center">
-              <p className="text-mono text-light pb-4">
-                your estimated one rep max is:
-              </p>
-              <p className="text-6xl text-mono text-light">
-                {oneRepMaxInPounds} LBS | {oneRepMaxInKg} KG
-              </p>
-            </div>
-
-            <Percentages oneRepMax={oneRepMax} />
-          </div>
-        )}
-      </div>
+      )}
     </div>
   )
 };
