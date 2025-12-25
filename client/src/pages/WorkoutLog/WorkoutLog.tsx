@@ -23,19 +23,19 @@ const WorkoutLog = () => {
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto p-4 flex flex-col gap-8">
+    <div className="w-full max-w-3xl mx-auto flex flex-col gap-8">
       <PageHeader
         line1="workout / "
         line2="nutrition log"
-        icon={<CalendarDays size={36} />}
+        icon={<CalendarDays size={34} />}
         description="keep track of your daily workouts and nutrition"
       />
 
       <WorkoutLogEntry onAddSet={handleAddSet} />
 
-      <div className="mt-4">
-        <h3 className="font-mono text-grey text-xs uppercase tracking-widest mb-4 px-1">
-          today's training
+      <div className="mt-4 w-full max-w-3xl">
+        <h3 className="text-grey text-sm mb-1 ">
+          today's workout
         </h3>
         <DataTable columns={columns} data={logData} />
       </div>

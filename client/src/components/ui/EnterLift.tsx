@@ -18,10 +18,10 @@ export const EnterLift = ({ liftName, numberOfReps, weightLifted, onNameChange, 
   return (
     <div className="">
       <form
-        className="bg-card border rounded-2xl p-10 max-w-3xl mx-auto"
+        className="border-2 border-dark dark:border-light rounded-lg p-8 max-w-3xl mx-auto"
         onSubmit={onSubmit}
       >
-        <div className="max-w-xl mx-auto flex flex-col gap-8">
+        <div className="max-w-xl mx-auto flex flex-col gap-6">
           <Input
             id="liftName-input"
             label="exercise name"

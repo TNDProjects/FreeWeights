@@ -21,7 +21,7 @@ export const EnterLiftInLog = ({ liftName, numberOfSets, repsCompleted, weightLi
   return (
     <div className="">
       <form
-        className="bg-card border rounded-2xl p-10 max-w-3xl mx-auto"
+        className="border-2 border-dark dark:border-light rounded p-10 max-w-3xl mx-auto"
         onSubmit={onSubmit}
       >
         <div className="max-w-xl mx-auto flex flex-col gap-8">
@@ -61,7 +61,7 @@ export const EnterLiftInLog = ({ liftName, numberOfSets, repsCompleted, weightLi
           />
           <Input
             id="notes-input"
-            label="notes"
+            label="notes (optional)"
             type="text"
             placeholder="ex. RPE 7, felt pretty easy"
             value={notes}

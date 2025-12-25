@@ -62,7 +62,7 @@ export default {
   		borderRadius: {
   			sm: 'calc(var(--radius) - 4px)',
   			DEFAULT: '.75rem',
-  			lg: 'var(--radius)',
+  			lg: '1rem',
   			full: '9999px',
   			md: 'calc(var(--radius) - 2px)'
   		}

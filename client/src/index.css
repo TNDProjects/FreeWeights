@@ -3,6 +3,23 @@
 @tailwind components;
 @tailwind utilities;
 
+.light {
+  background-color: #f5f5f5;
+  color: rgba(18, 18, 18, 1);
+}
+
+.dark {
+  background-color: rgba(18, 18, 18, 1);
+  color: #f5f5f5;
+}
+
+.light,
+.dark {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+
 @keyframes slideFromBottom {
   from {
     opacity: 0;
