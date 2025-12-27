@@ -49,7 +49,7 @@ const WorkoutLogEntry = ({ onAddSet }: WorkoutLogEntryProps) => {
       </div>
 
       {isEnteringLift && (
-        <div className="animate-entry">
+        <div className="animate-up">
           <EnterLiftInLog
             liftName={liftName}
             numberOfSets={numberOfSets}

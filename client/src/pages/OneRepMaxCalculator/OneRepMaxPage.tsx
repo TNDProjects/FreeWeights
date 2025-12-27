@@ -59,7 +59,7 @@ const OneRepMaxPage = () => {
       <PageHeader 
         line1="one-rep max" 
         line2="calculator" 
-        icon={<Weight size={36}/>} 
+        icon={<Weight size={34}/>} 
         description="enter your lift details to estimate your 1RM"
       />
 
@@ -77,17 +77,19 @@ const OneRepMaxPage = () => {
       )}
       
       {oneRepMaxInPounds && (
-        <div className="flex flex-col gap-8 pt-8">
-          <div className="border border-primary rounded-xl p-8 text-center">
-            <p className="text-mono text-light pb-4">
-              your estimated one rep max is:
-            </p>
-            <p className="text-6xl text-mono text-light">
-              {oneRepMaxInPounds} LBS | {oneRepMaxInKg} KG
-            </p>
+        <div className="animate-up">
+          <div className="flex flex-col gap-8 pt-8">
+            <div className="border rounded-xl p-8 text-center">
+              <p className="text-mono text-light pb-4">
+                your estimated one rep max is:
+              </p>
+              <p className="text-6xl text-mono text-light">
+                {oneRepMaxInPounds} LBS | {oneRepMaxInKg} KG
+              </p>
+            </div>
+            
+            <Percentages oneRepMax={oneRepMax} />
           </div>
-
-          <Percentages oneRepMax={oneRepMax} />
         </div>
       )}
     </div>

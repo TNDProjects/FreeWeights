@@ -11,13 +11,13 @@ function LandingPage() {
 
         {/* header section */}
         <section className="w-full flex flex-col justify-center py-48" id="header-section">
-          <h2 className="text-3xl lg:text-4xl mb-8">
+          <h2 className="text-3xl lg:text-4xl leading-12 mb-8">
             your <u>all-in-one</u><br/>
             fitness and<br/>
             nutrition<br/>
             toolkit.
           </h2>
-          <Link to="/signup" className="bg-light text-dark text-m tracking-tight px-5 py-2 rounded w-fit hover:bg-grey hover:text-light transition-colors cursor-pointer">
+          <Link to="/signup" className="border-2 border-dark dark:border-light text-m tracking-tight px-5 py-2 rounded w-fit hover:bg-grey hover:text-light cursor-pointer">
             get started
           </Link>
         </section>
@@ -37,10 +37,10 @@ function LandingPage() {
         <section className="w-full" id="tools-section">
           <h3 className="text-sm text-grey mb-1">tools</h3>
           
-          <div className="space-y-3">
+          <div className="flex flex-col gap-5">
             <Link 
               to="/log" 
-              className="flex items-center justify-between border border-light rounded-lg px-4 py-3 hover:border-grey hover:text-grey transition-colors group"
+              className="flex items-center justify-between border-2 border-dark dark:border-light rounded-lg px-4 py-3 hover:border-grey hover:text-grey transition-colors group"
             >
               <div className="flex items-center gap-4">
                 <CalendarDays />
@@ -54,7 +54,7 @@ function LandingPage() {
 
             <Link 
               to="/orm-calculator" 
-              className="flex items-center justify-between border border-light rounded-lg px-4 py-3 hover:border-grey hover:text-grey transition-colors group"
+              className="flex items-center justify-between border-2 border-dark dark:border-light rounded-lg px-4 py-3 hover:border-grey hover:text-grey transition-colors group"
             >
               <div className="flex items-center gap-4">
                 <Weight />
@@ -68,7 +68,7 @@ function LandingPage() {
 
             <Link 
               to="/nutrition-calculator" 
-              className="flex items-center justify-between border border-light rounded-lg px-4 py-3 hover:border-grey hover:text-grey transition-colors group"
+              className="flex items-center justify-between border-2 border-dark dark:border-light rounded-lg px-4 py-3 hover:border-grey hover:text-grey transition-colors group"
             >
               <div className="flex items-center gap-4">
                 <Apple />
@@ -82,7 +82,7 @@ function LandingPage() {
 
             <Link 
               to="/weight-visualizer" 
-              className="flex items-center justify-between border border-light rounded-lg px-4 py-3 hover:border-grey hover:text-grey transition-colors group"
+              className="flex items-center justify-between border-2 border-dark dark:border-light rounded-lg px-4 py-3 hover:border-grey hover:text-grey transition-colors group"
             >
               <div className="flex items-center gap-4">
                 <Dumbbell />

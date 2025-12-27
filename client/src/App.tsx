@@ -12,7 +12,7 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <div className="bg-dark text-light font-mono">
+      <div className="font-mono">
         <Header />
         <main className="min-h-screen px-4 sm:px-6 lg:px-12 flex flex-col items-center flex-grow">
           <Routes>
