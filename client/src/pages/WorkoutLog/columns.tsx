@@ -12,23 +12,15 @@ export const columns: ColumnDef<WorkoutLogRow>[] = [
     ),
   },
   {
-    header: "Weight",
+    header: "Sets",
     cell: ({ row }) => (
-      <div className="flex flex-col gap-1">
-        {row.original.sets.map((set, i) => (
-          <div key={i} className="text-light">
-            {set.weight} <span className="text-[10px] text-grey">lbs</span>
+      <div className="flex flex-col gap-1 font-mono text-sm">
+        {row.original.sets.map((set, index) => (
+          <div key={index} className="flex items-center gap-2">
+            <span className="text-light font-bold">{set.weight}</span>
+            <span className="text-grey text-[10px]">x</span>
+            <span className="text-light">{set.reps}</span>
           </div>
-        ))}
-      </div>
-    ),
-  },
-  {
-    header: "Reps",
-    cell: ({ row }) => (
-      <div className="flex flex-col gap-1 text-center">
-        {row.original.sets.map((set, i) => (
-          <div key={i} className="text-light">{set.reps}</div>
         ))}
       </div>
     ),
@@ -36,10 +28,12 @@ export const columns: ColumnDef<WorkoutLogRow>[] = [
   {
     header: "Notes",
     cell: ({ row }) => (
-      <div className="flex flex-col gap-1 italic text-xs text-grey">
-        {row.original.sets.map((set, i) => (
-          <div key={i} className="truncate max-w-[150px]">
-            {set.notes || "-"}
+      <div className="flex flex-col gap-1 font-mono">
+        {row.original.sets.map((set, index) => (
+          <div key={index} className="h-[20px] flex items-center">
+            <span className="text-grey italic text-xs truncate max-w-[200px]">
+              {set.notes || "—"}
+            </span>
           </div>
         ))}
       </div>
