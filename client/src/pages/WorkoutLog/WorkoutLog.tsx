@@ -18,6 +18,7 @@ const WorkoutLog = () => {
         reps: form.reps,
         weight: form.weight,
         notes: form.notes
+
       })
     );
     setLogData((prev) => {
