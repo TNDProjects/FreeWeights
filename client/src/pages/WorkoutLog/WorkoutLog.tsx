@@ -4,22 +4,37 @@ import PageHeader from '../../components/PageHeader';
 import WorkoutLogEntry from "./WorkoutLogEntry.tsx";
 import { DataTable } from "../../components/ui/DataTable.tsx";
 import { columns } from "./columns";
-import type { WorkoutLogRow } from "./types/types.ts";
+import type { WorkoutLogRow, SingleSet, EnterLiftForm } from "./types/types.ts";
 
 const WorkoutLog = () => {
   const [logData, setLogData] = useState<WorkoutLogRow[]>([]);
+  console.log(logData);
 
-  const handleAddSet = (name: string, sets: number, reps: number, weight: number, notes: string) => {
-    const newSet: WorkoutLogRow = {
-      name,
-      sets,
-      reps,
-      weight,
-      notes
-    };
-    console.log(newSet);
+  const handleAddSet = (form: EnterLiftForm) => {
+    const expandedSets: SingleSet[] = Array.from({
+      length: form.sets
+    },
+      () => ({
+        reps: form.reps,
+        weight: form.weight,
+        notes: form.notes
+      })
+    );
+    setLogData((prev) => {
+      const isExisting = prev.find((lift) => lift.name === form.name);
+      if (!isExisting) {
+        return [
+          {
+            name: form.name,
+            sets: expandedSets,
+          },
+          ...prev,
+        ];
+      }
+      return prev.map((lift) =>
+        lift.name === form.name ? { ...lift, sets: [...lift.sets, ...expandedSets] } : lift);
 
-    setLogData((prev) => [newSet, ...prev]);
+    });
   };
 
   return (
