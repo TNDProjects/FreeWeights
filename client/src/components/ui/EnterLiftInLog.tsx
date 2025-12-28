@@ -19,9 +19,9 @@ interface EnterLiftInLogProps {
 
 export const EnterLiftInLog = ({ liftName, numberOfSets, repsCompleted, weightLifted, notes, onNameChange, onSetsChange, onRepsChange, onNotesChange, onWeightChange, buttonText, onSubmit }: EnterLiftInLogProps) => {
   return (
-    <div className="font-mono">
+    <div className="">
       <form
-        className="border-2 border-dark dark:border-light rounded p-10 max-w-3xl mx-auto"
+        className="border-2 border-dark dark:border-light rounded p-6 max-w-3xl mx-auto"
         onSubmit={onSubmit}
       >
         <div className="max-w-xl mx-auto flex flex-col gap-8">
@@ -61,20 +61,20 @@ export const EnterLiftInLog = ({ liftName, numberOfSets, repsCompleted, weightLi
               onChange={(e) => onWeightChange(e.target.value)}
             />
           </div>
+
+
           <div className="flex flex-col gap-2">
-            <label htmlFor="notes-input">
+            <label htmlFor="notes-input" className="text-gray-400 font-mono text-sm">
               notes (optional)
             </label>
             <textarea
               id="notes-input"
-              className="w-full h-32 p-4 rounded-2xl font-mono resize-none focus:outline-none"
+              className="w-full h-32 p-4 rounded-2xl bg-white text-gray-400 font-mono resize-none focus:outline-none"
               placeholder="ex. RPE 7, felt pretty easy"
               value={notes}
               onChange={(e) => onNotesChange(e.target.value)}
             />
-          </div>
-
-          <div className="pt-4 flex justify-center">
+          </div>          <div className="pt-4 flex justify-center">
             <Button variant="outline" type="submit">
               {buttonText}
             </Button>
