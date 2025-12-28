@@ -19,7 +19,7 @@ export const Input = ({ label, id, className, ...props }: InputProps) => {
       <input
         id={id}
         className={`
-          rounded
+         rounded-md 
           h-10 
           px-2
           text-black

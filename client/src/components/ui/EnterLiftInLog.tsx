@@ -19,12 +19,12 @@ interface EnterLiftInLogProps {
 
 export const EnterLiftInLog = ({ liftName, numberOfSets, repsCompleted, weightLifted, notes, onNameChange, onSetsChange, onRepsChange, onNotesChange, onWeightChange, buttonText, onSubmit }: EnterLiftInLogProps) => {
   return (
-    <div className="">
+    <div>
       <form
-        className="border-2 rounded-lg border-dark dark:border-light p-6 max-w-xl mx-auto"
+        className="border-2 border-dark rounded-lg dark:border-light p-4 max-w-lg mx-auto"
         onSubmit={onSubmit}
       >
-        <div className="max-w-xl mx-auto flex flex-col gap-6">
+        <div className="max-w-md mx-auto flex flex-col gap-4">
           <Input
             className="w-full"
             id="liftName-input"
@@ -36,7 +36,7 @@ export const EnterLiftInLog = ({ liftName, numberOfSets, repsCompleted, weightLi
           />
           <div className="grid grid-cols-3 gap-8">
             <Input
-              className="w-32"
+              className=""
               id="number-of-sets"
               label="sets"
               type="number"
@@ -45,7 +45,7 @@ export const EnterLiftInLog = ({ liftName, numberOfSets, repsCompleted, weightLi
               onChange={(e) => onSetsChange(e.target.value)}
             />
             <Input
-              className="w-32"
+              className=""
               id="reps-input"
               label="reps"
               type="number"
@@ -56,7 +56,7 @@ export const EnterLiftInLog = ({ liftName, numberOfSets, repsCompleted, weightLi
               onChange={(e) => onRepsChange(e.target.value)}
             />
             <Input
-              className="w-32"
+              className=""
               id="weight-input"
               label="weight"
               type="number"
@@ -71,12 +71,13 @@ export const EnterLiftInLog = ({ liftName, numberOfSets, repsCompleted, weightLi
             </label>
             <textarea
               id="notes-input"
-              className="w-full h-32 p-4 rounded-2xl bg-white text-gray-400 font-mono resize-none focus:outline-none"
+              className="w-full h-32 p-4 rounded-md  text-gray-400 font-mono resize-none focus:outline-none"
               placeholder="ex. RPE 7, felt pretty easy"
               value={notes}
               onChange={(e) => onNotesChange(e.target.value)}
             />
-          </div>          <div className="pt-4 flex justify-center">
+          </div>
+          <div className="pt-4 flex justify-center">
             <Button variant="outline" type="submit">
               {buttonText}
             </Button>
