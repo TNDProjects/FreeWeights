@@ -19,20 +19,16 @@ export const Input = ({ label, id, className, ...props }: InputProps) => {
       <input
         id={id}
         className={`
-          h-10
           rounded
+          h-10 
           px-2
           text-black
           border-2
           border-dark dark:border-light
-          transition-colors
           focus:border-black/50
           disabled:opacity-50
           disabled:cursor-not-allowed
-
           [appearance:textfield]
-          [&::-webkit-inner-spin-button]:appearance-none
-          [&::-webkit-outer-spin-button]:appearance-none
 
           ${className ?? ""}
         `}

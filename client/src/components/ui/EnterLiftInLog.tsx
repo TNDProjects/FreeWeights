@@ -21,10 +21,10 @@ export const EnterLiftInLog = ({ liftName, numberOfSets, repsCompleted, weightLi
   return (
     <div className="">
       <form
-        className="border-2 border-dark dark:border-light rounded p-6 max-w-3xl mx-auto"
+        className="border-2 rounded-lg border-dark dark:border-light p-6 max-w-xl mx-auto"
         onSubmit={onSubmit}
       >
-        <div className="max-w-xl mx-auto flex flex-col gap-8">
+        <div className="max-w-xl mx-auto flex flex-col gap-6">
           <Input
             className="w-full"
             id="liftName-input"
@@ -34,7 +34,7 @@ export const EnterLiftInLog = ({ liftName, numberOfSets, repsCompleted, weightLi
             value={liftName}
             onChange={(e) => onNameChange(e.target.value)}
           />
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-8">
             <Input
               className="w-32"
               id="number-of-sets"
