@@ -19,6 +19,8 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/orm-calculator" element={<OneRepMaxPage />} />
             <Route path="/log" element={<WorkoutLog />} />
+            {/*             <Route path="workouts" element = {<WorkoutHistory/>}/> */}
+            {/* <Route path="workouts" element = {<WorkoutDetail/>}/> */}
           </Routes>
         </main>
         <Footer />

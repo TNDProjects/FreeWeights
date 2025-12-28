@@ -19,6 +19,7 @@ const WorkoutLogEntry = ({ onAddSet }: WorkoutLogEntryProps) => {
     if (!liftName || !weightLifted || !repsCompleted) return;
 
     onAddSet({
+      id: crypto.randomUUID(),
       name: liftName,
       sets: parseInt(numberOfSets),
       reps: parseInt(repsCompleted),
@@ -27,8 +28,7 @@ const WorkoutLogEntry = ({ onAddSet }: WorkoutLogEntryProps) => {
     });
 
     setWeightLifted("");
-    setRepsCompleted("");
-    setNumberOfSets("");
+    setRepsCompleted(""); setNumberOfSets("");
     setNotes("");
     setIsEnteringLift(false);
   };
