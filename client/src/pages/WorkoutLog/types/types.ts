@@ -1,9 +1,11 @@
-export type SingleSet = {
+export type SingleEntry = {
+  setCount: number;
   reps: number;
   weight: number;
   notes?: string;
 }
 export type EnterLiftForm = {
+  id: string;
   name: string;
   sets: number;
   reps: number;
@@ -12,11 +14,14 @@ export type EnterLiftForm = {
 }
 
 export type WorkoutLogRow = {
+  id: string,
   name: string;
-  sets: SingleSet[];
+  sets: SingleEntry[];
 };
-export type WorkoutLogData = {
+export type SavedWorkout = {
+  id: string,
   date: string;
+  name: string;
   exercises: WorkoutLogRow[];
 };
 
