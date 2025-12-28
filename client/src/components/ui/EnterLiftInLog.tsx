@@ -21,7 +21,7 @@ export const EnterLiftInLog = ({ liftName, numberOfSets, repsCompleted, weightLi
   return (
     <div className="">
       <form
-        className="border-2 border-dark dark:border-light rounded p-10 max-w-3xl mx-auto"
+        className="border-2 border-dark dark:border-light rounded p-6 max-w-3xl mx-auto"
         onSubmit={onSubmit}
       >
         <div className="max-w-xl mx-auto flex flex-col gap-8">
@@ -33,41 +33,48 @@ export const EnterLiftInLog = ({ liftName, numberOfSets, repsCompleted, weightLi
             value={liftName}
             onChange={(e) => onNameChange(e.target.value)}
           />
-          <Input
-            id="number-of-sets"
-            label="number of sets"
-            type="number"
-            placeholder="ex. 3"
-            value={numberOfSets}
-            onChange={(e) => onSetsChange(e.target.value)}
-          />
-          <Input
-            id="reps-input"
-            label="reps performed"
-            type="number"
-            placeholder="ex. 8"
-            min="1"
-            max="50"
-            value={repsCompleted}
-            onChange={(e) => onRepsChange(e.target.value)}
-          />
-          <Input
-            id="weight-input"
-            label="weight lifted (lbs)"
-            type="number"
-            placeholder="ex. 225"
-            value={weightLifted}
-            onChange={(e) => onWeightChange(e.target.value)}
-          />
-          <Input
-            id="notes-input"
-            label="notes (optional)"
-            type="text"
-            placeholder="ex. RPE 7, felt pretty easy"
-            value={notes}
-            onChange={(e) => onNotesChange(e.target.value)}
-          />
-          <div className="pt-4 flex justify-center">
+          <div className="grid grid-cols-3 gap-4">
+            <Input
+              id="number-of-sets"
+              label="number of sets"
+              type="number"
+              placeholder="ex. 3"
+              value={numberOfSets}
+              onChange={(e) => onSetsChange(e.target.value)}
+            />
+            <Input
+              id="reps-input"
+              label="reps performed"
+              type="number"
+              placeholder="ex. 8"
+              min="1"
+              max="50"
+              value={repsCompleted}
+              onChange={(e) => onRepsChange(e.target.value)}
+            />
+            <Input
+              id="weight-input"
+              label="weight lifted (lbs)"
+              type="number"
+              placeholder="ex. 225"
+              value={weightLifted}
+              onChange={(e) => onWeightChange(e.target.value)}
+            />
+          </div>
+
+
+          <div className="flex flex-col gap-2">
+            <label htmlFor="notes-input" className="text-gray-400 font-mono text-sm">
+              notes (optional)
+            </label>
+            <textarea
+              id="notes-input"
+              className="w-full h-32 p-4 rounded-2xl bg-white text-gray-400 font-mono resize-none focus:outline-none"
+              placeholder="ex. RPE 7, felt pretty easy"
+              value={notes}
+              onChange={(e) => onNotesChange(e.target.value)}
+            />
+          </div>          <div className="pt-4 flex justify-center">
             <Button variant="outline" type="submit">
               {buttonText}
             </Button>

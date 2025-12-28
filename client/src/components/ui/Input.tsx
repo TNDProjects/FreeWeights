@@ -7,11 +7,11 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 export const Input = ({ label, id, className, ...props }: InputProps) => {
   return (
-    <div className="flex flex-col gap-1 w-full">
+    <div className="flex text-gray-400 flex-col gap-1 w-full">
       {label && (
         <label
           htmlFor={id}
-          className="text-sm text-grey tracking-tight"
+          className="text-sm tracking-tight"
         >
           {label}
         </label>

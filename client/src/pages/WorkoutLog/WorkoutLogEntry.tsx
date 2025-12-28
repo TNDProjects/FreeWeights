@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Button } from "../../components/ui/Button.tsx";
 import { EnterLiftInLog } from "../../components/ui/EnterLiftInLog.tsx";
+import type { EnterLiftForm } from "./types/types.ts";
 
 interface WorkoutLogEntryProps {
-  onAddSet: (name: string, sets: number, reps: number, weight: number, notes: string) => void;
+  onAddSet: (form: EnterLiftForm) => void;
 }
 
 const WorkoutLogEntry = ({ onAddSet }: WorkoutLogEntryProps) => {
@@ -13,19 +14,17 @@ const WorkoutLogEntry = ({ onAddSet }: WorkoutLogEntryProps) => {
   const [weightLifted, setWeightLifted] = useState<string>("");
   const [notes, setNotes] = useState<string>("");
   const [isEnteringLift, setIsEnteringLift] = useState<boolean>(false);
-  console.log({ repsCompleted, weightLifted });
-
 
   const enterLift = () => {
     if (!liftName || !weightLifted || !repsCompleted) return;
 
-    onAddSet(
-      liftName,
-      parseInt(numberOfSets),
-      parseInt(repsCompleted),
-      parseInt(weightLifted),
-      notes,
-    );
+    onAddSet({
+      name: liftName,
+      sets: parseInt(numberOfSets),
+      reps: parseInt(repsCompleted),
+      weight: parseInt(weightLifted),
+      notes: notes,
+    });
 
     setWeightLifted("");
     setRepsCompleted("");
