@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Button } from "../../components/ui/Button.tsx";
-import { EnterLiftInLog } from "../../components/ui/EnterLiftInLog.tsx";
-import type { EnterLiftForm } from "./types/types.ts";
+import { Button } from "../../../components/ui/Button.tsx";
+import { EnterLiftInLog } from "../../../components/ui/EnterLiftInLog.tsx";
+import type { EnterLiftForm } from "../types/types.ts";
 
 interface WorkoutLogEntryProps {
   onAddSet: (form: EnterLiftForm) => void;

@@ -1,15 +1,20 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Input } from "@/components/ui/Input.tsx";
 import { Button } from "@/components/ui/Button.tsx";
 import { CalendarDays } from "lucide-react";
-import PageHeader from '../../components/PageHeader';
+import PageHeader from '../../../components/PageHeader';
 import WorkoutLogEntry from "./WorkoutLogEntry.tsx";
-import { DataTable } from "../../components/ui/DataTable.tsx";
+import { DataTable } from "../../../components/ui/DataTable.tsx";
 import { columns } from "./columns";
+import type { WorkoutLogRow, SingleEntry, EnterLiftForm, SavedWorkout } from "../types/types.ts";
 
-import type { WorkoutLogRow, SingleEntry, EnterLiftForm, SavedWorkout } from "./types/types.ts";
 
 const WorkoutLog = () => {
   const [logData, setLogData] = useState<WorkoutLogRow[]>([]);
+  const [workoutName, setWorkoutName] = useState<string>("");
+  const navigate = useNavigate();
+
 
   const handleAddSet = (form: EnterLiftForm) => {
     const expandedSets: SingleEntry[] = Array.from({
@@ -44,13 +49,14 @@ const WorkoutLog = () => {
     const savedWorkout: SavedWorkout = {
       id: crypto.randomUUID(),
       date: new Date().toLocaleDateString(),
-      name: "test",
+      name: workoutName,
       exercises: logData
     };
     const exisitingWorkouts = JSON.parse(localStorage.getItem("workoutHistory") || "[]");
     localStorage.setItem("workoutHistory", JSON.stringify([savedWorkout, ...exisitingWorkouts]));
+    navigate('/workouts');
   }
-  console.log(localStorage.getItem("workoutHistory"));
+  console.log("localstorage:", localStorage.getItem("workoutHistory"));
 
 
   return (
@@ -70,10 +76,19 @@ const WorkoutLog = () => {
         </h3>
         <DataTable columns={columns} data={logData} />
       </div>
+
+      <Input
+        id="name-of-workout"
+        label="Name your work out"
+        type="text"
+        placeholder="ex. Monday Back Day"
+        value={workoutName}
+        onChange={(e) => setWorkoutName(e.target.value)}
+      />
       <Button
         variant="outline"
         onClick={() => finishWorkout()}>
-        Save Set
+        Save Workout
       </Button>
     </div>
   );
