@@ -26,6 +26,7 @@ export const EnterLiftInLog = ({ liftName, numberOfSets, repsCompleted, weightLi
       >
         <div className="max-w-xl mx-auto flex flex-col gap-8">
           <Input
+            className="w-full"
             id="liftName-input"
             label="exercise name"
             type="text"
@@ -35,16 +36,18 @@ export const EnterLiftInLog = ({ liftName, numberOfSets, repsCompleted, weightLi
           />
           <div className="grid grid-cols-3 gap-4">
             <Input
+              className="w-32"
               id="number-of-sets"
-              label="number of sets"
+              label="sets"
               type="number"
               placeholder="ex. 3"
               value={numberOfSets}
               onChange={(e) => onSetsChange(e.target.value)}
             />
             <Input
+              className="w-32"
               id="reps-input"
-              label="reps performed"
+              label="reps"
               type="number"
               placeholder="ex. 8"
               min="1"
@@ -53,16 +56,15 @@ export const EnterLiftInLog = ({ liftName, numberOfSets, repsCompleted, weightLi
               onChange={(e) => onRepsChange(e.target.value)}
             />
             <Input
+              className="w-32"
               id="weight-input"
-              label="weight lifted (lbs)"
+              label="weight"
               type="number"
               placeholder="ex. 225"
               value={weightLifted}
               onChange={(e) => onWeightChange(e.target.value)}
             />
           </div>
-
-
           <div className="flex flex-col gap-2">
             <label htmlFor="notes-input" className="text-gray-400 font-mono text-sm">
               notes (optional)
