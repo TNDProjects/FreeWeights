@@ -43,16 +43,25 @@ export const columns: ColumnDef<WorkoutLogRow>[] = [
   },
   {
     header: "Notes",
-    cell: ({ row }) => (
-      <div className="flex text-gray-400 flex-col gap-1 font-mono">
-        {row.original.sets.map((set, index) => (
-          <div key={index} className="h-[20px] flex items-center">
-            <span className="italic text-xs truncate max-w-[200px]">
-              {set.notes || "—"}
-            </span>
-          </div>
-        ))}
-      </div>
-    ),
-  },
+    cell: ({ row }) => {
+      return (
+        <div className="flex flex-col gap-1 font-mono">
+          {row.original.sets.map((set, index) => {
+            const isDuplicate = index > 0 && set.notes === row.original.sets[index - 1].notes;
+            return (
+              <div key={index} className="h-[20px] flex items-center">
+                {!isDuplicate && set.notes ? (
+                  <span className="text-gray-400 italic text-xs truncate max-w-[200px]">
+                    {set.notes}
+                  </span>
+                ) : (
+                  <span className="opacity-0">—</span>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      );
+    },
+  }
 ];
