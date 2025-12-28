@@ -20,7 +20,7 @@ const WorkoutLogEntry = ({ onAddSet }: WorkoutLogEntryProps) => {
 
     onAddSet({
       id: crypto.randomUUID(),
-      name: liftName,
+      name: liftName.toLowerCase().trim(),
       sets: parseInt(numberOfSets),
       reps: parseInt(repsCompleted),
       weight: parseInt(weightLifted),
