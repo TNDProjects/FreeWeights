@@ -20,9 +20,9 @@ export const columns: ColumnDef<WorkoutLogRow>[] = [
           {sets.map((set, index) => {
             // Check if this set is identical to the one before it
             const isDuplicate = index > 0 &&
+              set.id === sets[index - 1].id &&
               set.reps === sets[index - 1].reps &&
-              set.weight === sets[index - 1].weight &&
-              set.setCount === sets[index - 1].setCount;
+              set.weight === sets[index - 1].weight
             // If it's a duplicate, don't render it again
             if (isDuplicate) return null;
             return (
