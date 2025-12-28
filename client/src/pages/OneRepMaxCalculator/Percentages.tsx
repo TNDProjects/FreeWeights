@@ -5,7 +5,7 @@ export const Percentages = ({ oneRepMax }: { oneRepMax: Max }) => {
   const percentagesFormatted = useGetPercentages(oneRepMax);
 
   return (
-    <div className="border border-light rounded-xl overflow-hidden mt-8">
+    <div className="border-2 border-dark dark:border-light rounded overflow-hidden mt-8">
       <div className="p-4 px-6 border-b border-border bg-white/5">
         <h3 className="">percentage breakdown</h3>
       </div>
@@ -16,13 +16,13 @@ export const Percentages = ({ oneRepMax }: { oneRepMax: Max }) => {
             className="flex justify-between px-6 py-4 hover:bg-input transition-colors items-center"
           >
             <span className="">{row.percentage}%</span>
-            <div className="text-right">
-              <span className="font-bold text-foreground">
-                {row.lb} <span className="text-sm text-muted-foreground font-normal mr-2">lbs</span>
+            <div className="">
+              <span className="">
+                {row.lb} lbs
               </span>
-              <span className="text-border mx-1">/</span>
-              <span className="font-medium text-muted-foreground">
-                {row.kg} <span className="text-sm font-normal">kg</span>
+              <span className="text-grey"> / </span>
+              <span className="">
+                {row.kg} kg
               </span>
             </div>
           </div>

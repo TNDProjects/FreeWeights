@@ -3,10 +3,8 @@ import { Input } from "./Input.tsx";
 
 
 interface EnterLiftProps {
-  liftName: string,
   numberOfReps: number | string,
   weightLifted: number | string,
-  onNameChange: (value: string) => void;
   onRepsChange: (value: string) => void;
   onWeightChange: (value: string) => void;
   buttonText: string;
@@ -14,7 +12,7 @@ interface EnterLiftProps {
 }
 
 
-export const EnterLift = ({ liftName, numberOfReps, weightLifted, onNameChange, onRepsChange, onWeightChange, buttonText, onSubmit }: EnterLiftProps) => {
+export const EnterLift = ({numberOfReps, weightLifted, onRepsChange, onWeightChange, buttonText, onSubmit }: EnterLiftProps) => {
   return (
     <div className="">
       <form
@@ -23,20 +21,15 @@ export const EnterLift = ({ liftName, numberOfReps, weightLifted, onNameChange, 
       >
         <div className="max-w-xl mx-auto flex flex-col gap-6">
           <Input
-            id="liftName-input"
-            label="exercise name"
-            type="text"
-            placeholder="ex. deadlift"
-            value={liftName}
-            onChange={(e) => onNameChange(e.target.value)}
-          />
-          <Input
             id="weight-input"
             label="weight lifted (lbs)"
             type="number"
             placeholder="ex. 225"
             value={weightLifted}
             onChange={(e) => onWeightChange(e.target.value)}
+            required
+            max="1500"
+            min="0"
           />
           <Input
             id="number-of-reps"
@@ -45,6 +38,9 @@ export const EnterLift = ({ liftName, numberOfReps, weightLifted, onNameChange, 
             placeholder="ex. 5"
             value={numberOfReps}
             onChange={(e) => onRepsChange(e.target.value)}
+            required
+            max="20"
+            min="0"
           />
           <div className="pt-4 flex justify-center">
             <Button variant="outline" type="submit">
