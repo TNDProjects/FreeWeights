@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Button } from "../../components/ui/Button.tsx";
-import { EnterLift } from "../../components/ui/EnterLift.tsx";
+import { Button } from "../../../components/ui/Button.tsx";
+import { EnterLiftInLog } from "../../../components/ui/EnterLiftInLog.tsx";
+import type { EnterLiftForm } from "../types/types.ts";
 
 interface WorkoutLogEntryProps {
-  onAddSet: (name: string, sets: number, reps: number, weight: number, notes: string) => void;
+  onAddSet: (form: EnterLiftForm) => void;
 }
 
 const WorkoutLogEntry = ({ onAddSet }: WorkoutLogEntryProps) => {
@@ -13,23 +14,21 @@ const WorkoutLogEntry = ({ onAddSet }: WorkoutLogEntryProps) => {
   const [weightLifted, setWeightLifted] = useState<string>("");
   const [notes, setNotes] = useState<string>("");
   const [isEnteringLift, setIsEnteringLift] = useState<boolean>(false);
-  console.log({ repsCompleted, weightLifted });
-
 
   const enterLift = () => {
     if (!liftName || !weightLifted || !repsCompleted) return;
 
-    onAddSet(
-      liftName,
-      parseInt(numberOfSets),
-      parseInt(repsCompleted),
-      parseInt(weightLifted),
-      notes,
-    );
+    onAddSet({
+      id: crypto.randomUUID(),
+      name: liftName,
+      sets: parseInt(numberOfSets),
+      reps: parseInt(repsCompleted),
+      weight: parseInt(weightLifted),
+      notes: notes,
+    });
 
     setWeightLifted("");
-    setRepsCompleted("");
-    setNumberOfSets("");
+    setRepsCompleted(""); setNumberOfSets("");
     setNotes("");
     setIsEnteringLift(false);
   };
@@ -39,7 +38,7 @@ const WorkoutLogEntry = ({ onAddSet }: WorkoutLogEntryProps) => {
       <div className="pt-4 flex justify-center">
         {!isEnteringLift ? (
           <Button variant="outline" onClick={() => setIsEnteringLift(true)}>
-            Add Set
+            Add Lift
           </Button>
         ) : (
           <Button variant="outline" onClick={() => setIsEnteringLift(false)}>
@@ -49,8 +48,8 @@ const WorkoutLogEntry = ({ onAddSet }: WorkoutLogEntryProps) => {
       </div>
 
       {isEnteringLift && (
-        <div className="animate-entry">
-          <EnterLift
+        <div className="animate-up">
+          <EnterLiftInLog
             liftName={liftName}
             numberOfSets={numberOfSets}
             repsCompleted={repsCompleted}

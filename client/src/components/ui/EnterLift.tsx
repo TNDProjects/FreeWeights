@@ -1,56 +1,25 @@
-import { Button } from "../../components/ui/Button.tsx";
-import { Input } from "../../components/ui/Input.tsx";
+import { Button } from "./Button.tsx";
+import { Input } from "./Input.tsx";
+
 
 interface EnterLiftProps {
-  liftName: string,
-  numberOfSets: number | string,
-  repsCompleted: number | string,
+  numberOfReps: number | string,
   weightLifted: number | string,
-  notes: string,
-  onNameChange: (value: string) => void;
-  onSetsChange: (value: string) => void;
   onRepsChange: (value: string) => void;
   onWeightChange: (value: string) => void;
-  onNotesChange: (value: string) => void;
   buttonText: string;
   onSubmit: (event: React.FormEvent) => void;
 }
 
 
-export const EnterLift = ({ liftName, numberOfSets, repsCompleted, weightLifted, notes, onNameChange, onSetsChange, onRepsChange, onNotesChange, onWeightChange, buttonText, onSubmit }: EnterLiftProps) => {
+export const EnterLift = ({numberOfReps, weightLifted, onRepsChange, onWeightChange, buttonText, onSubmit }: EnterLiftProps) => {
   return (
     <div className="">
       <form
-        className="bg-card border rounded-2xl p-10 max-w-3xl mx-auto"
+        className="border-2 border-dark dark:border-light rounded-lg p-8 max-w-3xl mx-auto"
         onSubmit={onSubmit}
       >
-        <div className="max-w-xl mx-auto flex flex-col gap-8">
-          <Input
-            id="liftName-input"
-            label="exercise name"
-            type="text"
-            placeholder="ex. Deadlift"
-            value={liftName}
-            onChange={(e) => onNameChange(e.target.value)}
-          />
-          <Input
-            id="number-of-sets"
-            label="number of sets"
-            type="number"
-            placeholder="ex. 3"
-            value={numberOfSets}
-            onChange={(e) => onSetsChange(e.target.value)}
-          />
-          <Input
-            id="reps-input"
-            label="reps performed"
-            type="number"
-            placeholder="ex. 8"
-            min="1"
-            max="50"
-            value={repsCompleted}
-            onChange={(e) => onRepsChange(e.target.value)}
-          />
+        <div className="max-w-xl mx-auto flex flex-col gap-6">
           <Input
             id="weight-input"
             label="weight lifted (lbs)"
@@ -58,14 +27,20 @@ export const EnterLift = ({ liftName, numberOfSets, repsCompleted, weightLifted,
             placeholder="ex. 225"
             value={weightLifted}
             onChange={(e) => onWeightChange(e.target.value)}
+            required
+            max="1500"
+            min="0"
           />
           <Input
-            id="notes-input"
-            label="notes"
-            type="text"
-            placeholder="ex. RPE 7, felt pretty easy"
-            value={notes}
-            onChange={(e) => onNotesChange(e.target.value)}
+            id="number-of-reps"
+            label="number of reps"
+            type="number"
+            placeholder="ex. 5"
+            value={numberOfReps}
+            onChange={(e) => onRepsChange(e.target.value)}
+            required
+            max="20"
+            min="0"
           />
           <div className="pt-4 flex justify-center">
             <Button variant="outline" type="submit">

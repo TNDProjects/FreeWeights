@@ -30,6 +30,7 @@ const OneRepMaxPage = () => {
   const [weight, setWeight] = useState<string>("");
   const [reps, setReps] = useState<string>("");
   const [oneRepMax, setOneRepMax] = useState<Max>(maxData);
+  const [isEnteringLift, setIsEnteringLift] = useState<boolean>(true);
 
   const calculateOneRepMax = () => {
 
@@ -43,7 +44,8 @@ const OneRepMaxPage = () => {
       IN_POUNDS: maxInPounds,
       IN_KILOGRAMS: maxInKG,
     })
-
+    setIsEnteringLift(false);
+    
   }
 
   // Have these so it's easier to use inside our render
@@ -56,31 +58,56 @@ const OneRepMaxPage = () => {
       <PageHeader 
         line1="one-rep max" 
         line2="calculator" 
-        icon={<Weight size={36}/>} 
+        icon={<Weight size={34}/>} 
         description="enter your lift details to estimate your 1RM"
       />
 
-      <EnterLift
-        weightLifted={weight}
-        repsCompleted={reps}
-        onWeightChange={setWeight}
-        onRepsChange={setReps}
-        buttonText="calculate"
-        onSubmit={calculateOneRepMax}
-      />
-
-      {oneRepMaxInPounds && (
-        <div className="flex flex-col gap-8 pt-8">
-          <div className="border border-primary rounded-xl p-8 text-center">
-            <p className="text-mono text-light pb-4">
-              your estimated one rep max is:
-            </p>
-            <p className="text-6xl text-mono text-light">
-              {oneRepMaxInPounds} LBS | {oneRepMaxInKg} KG
+      {isEnteringLift && (
+        <div>
+          <EnterLift
+            weightLifted={weight}
+            numberOfReps={reps}
+            onWeightChange={setWeight}
+            onRepsChange={setReps}
+            buttonText="calculate"
+            onSubmit={calculateOneRepMax}
+          />
+          <div className="py-12 flex flex-col gap-2">
+            <h1 className="text-xl"><i>what is a one-rep max?</i></h1>
+            <p className="text-grey text-sm leading-6 tracking-tighter">
+              an individual's one-rep max is the maximum amount of weight that they can lift for a single repetition of a given exercise.
+              it is also preferred that they perform the lift with good form and a full range of motion.
             </p>
           </div>
-
-          <Percentages oneRepMax={oneRepMax} />
+          <div className="flex flex-col gap-2">
+            <h1 className="text-xl"><i>how to calculate?</i></h1>
+            <p className="text-grey text-sm leading-6 tracking-tighter">
+              for the most accurate estimate, enter your information above using a lift performed between <b>1 and 10</b> repetitions.
+              after pressing the 'calculate' button, you will see your one-rep max estimate with a table of percentages below it.
+            </p>
+            <p className="mt-2 pb-12 text-grey text-sm leading-6 tracking-tighter">
+              the 'percentage breakdown' table shows the corresponding weights at various percentages of an individual’s one-rep max. 
+              these values can be used to guide training intensity — for example, <b>50–60%</b> is commonly used for warm-ups, <b>70–80%</b> for hypertrophy (muscle growth), 
+              and <b>80–90%</b> for strength development.
+            </p>
+          </div>
+        </div>
+      )}
+      
+      {oneRepMaxInPounds && (
+        <div className="animate-up">
+          <div className="flex flex-col">
+            <div className="border-2 border-dark dark:border-light rounded p-6 text-center">
+              <p className="text-sm md:text-lg pb-4 text-grey">
+                your estimated one-rep max is:
+              </p>
+              <p className="text-3xl md:text-5xl lg:text-6xl">
+                {oneRepMaxInPounds} lbs <span className="text-grey">/</span> {oneRepMaxInKg} kg
+              </p>
+            </div>
+           
+            <Percentages oneRepMax={oneRepMax} />
+          </div>
         </div>
       )}
     </div>
