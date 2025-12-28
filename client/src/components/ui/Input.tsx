@@ -11,7 +11,7 @@ export const Input = ({ label, id, className, ...props }: InputProps) => {
       {label && (
         <label
           htmlFor={id}
-          className="text-sm text-grey tracking-tight"
+          className="text-sm text-mono tracking-tight"
         >
           {label}
         </label>

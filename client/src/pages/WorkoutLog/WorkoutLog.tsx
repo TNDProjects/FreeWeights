@@ -37,6 +37,7 @@ const WorkoutLog = () => {
 
     });
   };
+  console.log(logData);
 
   return (
     <div className="w-full max-w-3xl mx-auto flex flex-col gap-8">
