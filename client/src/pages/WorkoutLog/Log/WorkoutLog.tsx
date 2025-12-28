@@ -56,6 +56,7 @@ const WorkoutLog = () => {
     localStorage.setItem("workoutHistory", JSON.stringify([savedWorkout, ...exisitingWorkouts]));
     navigate('/workouts');
   }
+  console.log({ logData });
   console.log("localstorage:", localStorage.getItem("workoutHistory"));
 
 
@@ -78,6 +79,7 @@ const WorkoutLog = () => {
       </div>
 
       <Input
+        className=""
         id="name-of-workout"
         label="Name your work out"
         type="text"

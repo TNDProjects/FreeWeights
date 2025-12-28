@@ -35,7 +35,7 @@ const WorkoutLogEntry = ({ onAddSet }: WorkoutLogEntryProps) => {
 
   return (
     <>
-      <div className="pt-4 flex justify-center">
+      <div className="pt-4">
         {!isEnteringLift ? (
           <Button variant="outline" onClick={() => setIsEnteringLift(true)}>
             Add Lift
