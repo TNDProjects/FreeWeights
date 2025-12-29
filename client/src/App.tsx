@@ -20,6 +20,7 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/orm-calculator" element={<OneRepMaxPage />} />
             <Route path="/log" element={<WorkoutLog />} />
+            <Route path="/log/:id" element={<WorkoutLog />} />
             <Route path="/workouts" element={<WorkoutHistory />} />
           </Routes>
         </main>

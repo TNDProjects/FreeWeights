@@ -1,4 +1,5 @@
 export type SingleEntry = {
+  id: string,
   setCount: number;
   reps: number;
   weight: number;

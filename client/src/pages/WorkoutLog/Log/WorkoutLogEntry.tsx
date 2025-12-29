@@ -20,7 +20,7 @@ const WorkoutLogEntry = ({ onAddSet }: WorkoutLogEntryProps) => {
 
     onAddSet({
       id: crypto.randomUUID(),
-      name: liftName,
+      name: liftName.toLowerCase().trim(),
       sets: parseInt(numberOfSets),
       reps: parseInt(repsCompleted),
       weight: parseInt(weightLifted),
@@ -35,7 +35,7 @@ const WorkoutLogEntry = ({ onAddSet }: WorkoutLogEntryProps) => {
 
   return (
     <>
-      <div className="pt-4 flex justify-center">
+      <div className="pt-4">
         {!isEnteringLift ? (
           <Button variant="outline" onClick={() => setIsEnteringLift(true)}>
             Add Lift
