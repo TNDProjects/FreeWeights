@@ -3,3 +3,5 @@ export type Max = {
   IN_KILOGRAMS: number | null,
 }
 
+export type UnitOrder = "lbs" | "kg";
+
