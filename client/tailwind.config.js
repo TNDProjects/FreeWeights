@@ -11,6 +11,7 @@ export default {
         dark: 'rgba(18, 18, 18, 1)',
         light: '#EAEAEA',
         grey: '#757575',
+        lightgrey: '#bdbdbdff',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
