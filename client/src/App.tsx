@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+//import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import OneRepMaxPage from './pages/OneRepMaxCalculator/OneRepMaxPage';
 import WorkoutLog from "../src/pages/WorkoutLog/Log/WorkoutLog.tsx";
 import WorkoutHistory from './pages/WorkoutLog/WorkoutHistory/WorkoutHistory.tsx';
 import LandingPage from "../src/pages/Landing/LandingPage.tsx";
-import { Session } from "@supabase/supabase-js";
-import supabase from "../supabaseClient";
+//import { Session } from "@supabase/supabase-js";
+//import supabase from "../supabaseClient";
 import AuthPage from "../src/pages/Auth/AuthPage.tsx";
 import Header from './components/header.tsx';
 import Footer from './components/footer.tsx';
@@ -22,6 +22,7 @@ function App() {
         <main className="min-h-screen px-4 sm:px-6 lg:px-12 flex flex-col items-center flex-grow">
           <Routes>
             <Route path="/" element={<LandingPage />} />
+            <Route path="/signup" element={<AuthPage />} />
             <Route path="/orm-calculator" element={<OneRepMaxPage />} />
             <Route path="/log" element={<WorkoutLog />} />
             <Route path="/log/:id" element={<WorkoutLog />} />
