@@ -38,6 +38,7 @@ const WorkoutLog = () => {
       length: form.sets
     },
       () => ({
+        userId: form.id,
         id: form.id,
         setCount: form.sets,
         reps: form.reps,
@@ -69,6 +70,7 @@ const WorkoutLog = () => {
     console.log(currentWorkoutId);
 
     const savedWorkout: SavedWorkout = {
+      userId: currentWorkoutId,
       id: currentWorkoutId,
       date: new Date().toLocaleDateString(),
       name: workoutName,

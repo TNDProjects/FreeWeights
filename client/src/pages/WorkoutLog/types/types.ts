@@ -1,4 +1,5 @@
 export type SingleEntry = {
+  userId: string;
   id: string,
   setCount: number;
   reps: number;
@@ -15,12 +16,14 @@ export type EnterLiftForm = {
 }
 
 export type WorkoutLogRow = {
-  id: string,
+  userId: string;
+  id: string;
   name: string;
   sets: SingleEntry[];
 };
 export type SavedWorkout = {
-  id: string,
+  userId: string;
+  id: string;
   date: string;
   name: string;
   exercises: WorkoutLogRow[];

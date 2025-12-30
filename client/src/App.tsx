@@ -1,8 +1,12 @@
+import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import OneRepMaxPage from './pages/OneRepMaxCalculator/OneRepMaxPage';
 import WorkoutLog from "../src/pages/WorkoutLog/Log/WorkoutLog.tsx";
 import WorkoutHistory from './pages/WorkoutLog/WorkoutHistory/WorkoutHistory.tsx';
 import LandingPage from "../src/pages/Landing/LandingPage.tsx";
+import { Session } from "@supabase/supabase-js";
+import supabase from "../supabaseClient";
+import AuthPage from "../src/pages/Auth/AuthPage.tsx";
 import Header from './components/header.tsx';
 import Footer from './components/footer.tsx';
 import ScrollToTop from './components/ScrollToTop';
