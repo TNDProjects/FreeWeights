@@ -2,11 +2,11 @@ import React from "react";
 
 interface WeightInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  unitOrder: "lbs" | "kg";
-  onUnitOrderChange: (value: "lbs" | "kg") => void;
+  weightUnit: "lbs" | "kg";
+  onWeightUnitChange: (value: "lbs" | "kg") => void;
 }
 
-export const WeightInput = ({ label, id, className, unitOrder, onUnitOrderChange, ...props }: WeightInputProps) => {
+export const WeightInput = ({ label, id, className, weightUnit, onWeightUnitChange, ...props }: WeightInputProps) => {
   return (
     <div className="flex flex-col text-gray-400 gap-1">
         {label && (
@@ -35,8 +35,8 @@ export const WeightInput = ({ label, id, className, unitOrder, onUnitOrderChange
                 {...props}
             />
             <select 
-              value={unitOrder}
-              onChange={(e) => onUnitOrderChange(e.target.value as "lbs" | "kg")} 
+              value={weightUnit}
+              onChange={(e) => onWeightUnitChange(e.target.value as "lbs" | "kg")} 
               className="text-black h-10 px-2 rounded border-2 border-dark dark:border-light" 
             >
                 <option value="lbs">lbs</option>
