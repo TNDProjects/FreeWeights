@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import OneRepMaxPage from './pages/OneRepMaxCalculator/OneRepMaxPage';
 import WorkoutLog from "../src/pages/WorkoutLog/Log/WorkoutLog.tsx";
 import WorkoutHistory from './pages/WorkoutLog/WorkoutHistory/WorkoutHistory.tsx';
+import NutritionCalculatorPage from './pages/NutritionCalculator/NutritionCalculatorPage';
+import BarbellVisualizerPage from './pages/BarbellVisualizer/BarbellVisualizerPage';
 import LandingPage from "../src/pages/Landing/LandingPage.tsx";
 //import { Session } from "@supabase/supabase-js";
 //import supabase from "../supabaseClient";
@@ -24,6 +26,8 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/signup" element={<AuthPage />} />
             <Route path="/orm-calculator" element={<OneRepMaxPage />} />
+            <Route path="/nutrition-calculator" element={<NutritionCalculatorPage />} />
+            <Route path="/barbell-visualizer" element={<BarbellVisualizerPage />} />
             <Route path="/log" element={<WorkoutLog />} />
             <Route path="/log/:id" element={<WorkoutLog />} />
             <Route path="/workouts" element={<WorkoutHistory />} />
