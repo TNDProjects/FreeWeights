@@ -2,11 +2,11 @@ import { Button } from "./Button.tsx";
 import { Input } from "./Input.tsx";
 
 interface EnterLiftInLogProps {
-  liftName: string,
-  numberOfSets: number | string,
-  repsCompleted: number | string,
-  weightLifted: number | string,
-  notes: string,
+  liftName: string;
+  numberOfSets: number | string;
+  repsCompleted: number | string;
+  weightLifted: number | string;
+  notes: string;
   onNameChange: (value: string) => void;
   onSetsChange: (value: string) => void;
   onRepsChange: (value: string) => void;
@@ -16,8 +16,20 @@ interface EnterLiftInLogProps {
   onSubmit: (event: React.FormEvent) => void;
 }
 
-
-export const EnterLiftInLog = ({ liftName, numberOfSets, repsCompleted, weightLifted, notes, onNameChange, onSetsChange, onRepsChange, onNotesChange, onWeightChange, buttonText, onSubmit }: EnterLiftInLogProps) => {
+export const EnterLiftInLog = ({
+  liftName,
+  numberOfSets,
+  repsCompleted,
+  weightLifted,
+  notes,
+  onNameChange,
+  onSetsChange,
+  onRepsChange,
+  onNotesChange,
+  onWeightChange,
+  buttonText,
+  onSubmit,
+}: EnterLiftInLogProps) => {
   return (
     <div>
       <form
@@ -66,12 +78,15 @@ export const EnterLiftInLog = ({ liftName, numberOfSets, repsCompleted, weightLi
             />
           </div>
           <div className="flex flex-col gap-2">
-            <label htmlFor="notes-input" className="text-gray-400 font-mono text-sm">
+            <label
+              htmlFor="notes-input"
+              className="text-gray-400 font-mono text-sm"
+            >
               notes (optional)
             </label>
             <textarea
               id="notes-input"
-              className="w-full h-32 p-4 rounded-md  text-gray-400 font-mono resize-none focus:outline-hidden"
+              className="w-full h-32 p-4 rounded-md  text-gray-400 font-mono border resize-none"
               placeholder="ex. RPE 7, felt pretty easy"
               value={notes}
               onChange={(e) => onNotesChange(e.target.value)}
@@ -85,6 +100,6 @@ export const EnterLiftInLog = ({ liftName, numberOfSets, repsCompleted, weightLi
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 export default EnterLiftInLog;
