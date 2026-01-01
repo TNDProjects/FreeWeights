@@ -1,15 +1,18 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Input } from "@/components/ui/Input.tsx";
-import { Button } from "@/components/ui/Button.tsx";
+import { Input } from "../../../components/ui/Input.tsx";
+import { Button } from "../../../components/ui/Button.tsx";
 import { CalendarDays } from "lucide-react";
-import PageHeader from '../../../components/PageHeader';
+import PageHeader from "../../../components/PageHeader";
 import WorkoutLogEntry from "./WorkoutLogEntry.tsx";
 import { DataTable } from "../../../components/ui/DataTable.tsx";
 import { columns } from "./columns";
-import type { WorkoutLogRow, SingleEntry, EnterLiftForm, SavedWorkout } from "../types/types.ts";
-
-
+import type {
+  WorkoutLogRow,
+  SingleEntry,
+  EnterLiftForm,
+  SavedWorkout,
+} from "../types/types.ts";
 
 const WorkoutLog = () => {
   const [logData, setLogData] = useState<WorkoutLogRow[]>([]);
@@ -17,34 +20,37 @@ const WorkoutLog = () => {
   const navigate = useNavigate();
   const params = useParams();
 
-  // If we see that the params.id (from the url) matches an id inside our localstorage, load that workout. 
+  // If we see that the params.id (from the url) matches an id inside our localstorage, load that workout.
   useEffect(() => {
     const exisitingWorkouts = localStorage.getItem("workoutHistory");
     if (exisitingWorkouts && params.id) {
-      const parsedExistingWorkouts = JSON.parse(exisitingWorkouts!) as SavedWorkout[];
-      const workoutToEdit = parsedExistingWorkouts.find((workout) => workout.id === params.id);
+      const parsedExistingWorkouts = JSON.parse(
+        exisitingWorkouts!,
+      ) as SavedWorkout[];
+      const workoutToEdit = parsedExistingWorkouts.find(
+        (workout) => workout.id === params.id,
+      );
 
       if (workoutToEdit) {
         setLogData(workoutToEdit.exercises);
         setWorkoutName(workoutToEdit.name);
       }
     }
-
   }, [params.id]);
 
-
   const handleAddSet = (form: EnterLiftForm) => {
-    const expandedSets: SingleEntry[] = Array.from({
-      length: form.sets
-    },
+    const expandedSets: SingleEntry[] = Array.from(
+      {
+        length: form.sets,
+      },
       () => ({
         userId: form.id,
         id: form.id,
         setCount: form.sets,
         reps: form.reps,
         weight: form.weight,
-        notes: form.notes
-      })
+        notes: form.notes,
+      }),
     );
     setLogData((prev) => {
       const isExisting = prev.find((lift) => lift.name === form.name);
@@ -59,13 +65,14 @@ const WorkoutLog = () => {
         ];
       }
       return prev.map((lift) =>
-        lift.name === form.name ? { ...lift, sets: [...lift.sets, ...expandedSets] } : lift);
-
+        lift.name === form.name
+          ? { ...lift, sets: [...lift.sets, ...expandedSets] }
+          : lift,
+      );
     });
   };
   const finishWorkout = () => {
-
-    // if we have a params.id we know to just save it to this current workout 
+    // if we have a params.id we know to just save it to this current workout
     const currentWorkoutId = params.id ? params.id : crypto.randomUUID();
     console.log(currentWorkoutId);
 
@@ -74,11 +81,11 @@ const WorkoutLog = () => {
       id: currentWorkoutId,
       date: new Date().toLocaleDateString(),
       name: workoutName,
-      exercises: logData
+      exercises: logData,
     };
 
     const historyString = localStorage.getItem("workoutHistory");
-    const history = historyString ? JSON.parse(historyString) : []
+    const history = historyString ? JSON.parse(historyString) : [];
     let updatedWorkoutLog;
 
     if (params.id) {
@@ -87,16 +94,14 @@ const WorkoutLog = () => {
           return savedWorkout;
         }
         return workout;
-
       });
     } else {
-      updatedWorkoutLog = [savedWorkout, ...history]
+      updatedWorkoutLog = [savedWorkout, ...history];
     }
 
     localStorage.setItem("workoutHistory", JSON.stringify(updatedWorkoutLog));
-    navigate('/workouts');
-  }
-
+    navigate("/workouts");
+  };
 
   return (
     <div className="w-full max-w-3xl mx-auto flex flex-col gap-8">
@@ -110,9 +115,7 @@ const WorkoutLog = () => {
       <WorkoutLogEntry onAddSet={handleAddSet} />
 
       <div className="mt-4 w-full max-w-3xl">
-        <h3 className="text-grey text-sm mb-1 ">
-          today's workout
-        </h3>
+        <h3 className="text-grey text-sm mb-1 ">today's workout</h3>
         <DataTable columns={columns} data={logData} />
       </div>
 
@@ -125,9 +128,7 @@ const WorkoutLog = () => {
         value={workoutName}
         onChange={(e) => setWorkoutName(e.target.value)}
       />
-      <Button
-        variant="outline"
-        onClick={() => finishWorkout()}>
+      <Button variant="outline" onClick={() => finishWorkout()}>
         Save Workout
       </Button>
     </div>

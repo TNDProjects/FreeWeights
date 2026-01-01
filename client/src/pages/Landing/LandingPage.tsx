@@ -17,7 +17,7 @@ function LandingPage() {
           nutrition<br />
           toolkit.
         </h2>
-        <Link to="/signup" className="border-2 border-dark dark:border-light text-m tracking-tight px-5 py-2 rounded w-fit hover:bg-grey hover:text-light cursor-pointer">
+        <Link to="/signup" className="border-2 border-dark dark:border-light text-m tracking-tight px-5 py-2 rounded-sm w-fit hover:bg-grey hover:text-light cursor-pointer">
           get started
         </Link>
       </section>

@@ -39,7 +39,7 @@ function Header() {
 
           <div className="hidden md:block">
             <Link to="/signup">
-              <button className="text-sm px-4 py-2 border-2 border-dark dark:border-light rounded hover:bg-grey hover:text-light">
+              <button className="text-sm px-4 py-2 border-2 border-dark dark:border-light rounded-sm hover:bg-grey hover:text-light">
                 sign up
               </button>
             </Link>

@@ -37,7 +37,7 @@ export const WeightInput = ({ label, id, className, unitOrder, onUnitOrderChange
             <select 
               value={unitOrder}
               onChange={(e) => onUnitOrderChange(e.target.value as "lbs" | "kg")} 
-              className="text-black h-10 px-2 rounded border-2 border-dark dark:border-light" 
+              className="text-black h-10 px-2 rounded-sm border-2 border-dark dark:border-light" 
             >
                 <option value="lbs">lbs</option>
                 <option value="kg">kg</option>

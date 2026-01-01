@@ -71,7 +71,7 @@ export const EnterLiftInLog = ({ liftName, numberOfSets, repsCompleted, weightLi
             </label>
             <textarea
               id="notes-input"
-              className="w-full h-32 p-4 rounded-md  text-gray-400 font-mono resize-none focus:outline-none"
+              className="w-full h-32 p-4 rounded-md  text-gray-400 font-mono resize-none focus:outline-hidden"
               placeholder="ex. RPE 7, felt pretty easy"
               value={notes}
               onChange={(e) => onNotesChange(e.target.value)}

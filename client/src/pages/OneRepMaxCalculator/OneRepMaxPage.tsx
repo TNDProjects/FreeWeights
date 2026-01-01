@@ -73,7 +73,7 @@ const OneRepMaxPage = () => {
       {oneRepMaxInPounds && (
         <div className="animate-up pt-12">
           <div className="border-2 border-dark dark:border-light rounded-xl flex flex-col">
-            <div className="rounded p-6 text-center">
+            <div className="rounded-sm p-6 text-center">
               <p className="text-sm md:text-lg pb-4 text-lightgrey tracking-tighter">
                 your estimated one-rep max is:
               </p>

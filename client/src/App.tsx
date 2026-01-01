@@ -19,7 +19,7 @@ function App() {
       <ScrollToTop />
       <div className="font-mono">
         <Header />
-        <main className="min-h-screen px-4 sm:px-6 lg:px-12 flex flex-col items-center flex-grow">
+        <main className="min-h-screen px-4 sm:px-6 lg:px-12 flex flex-col items-center grow">
           <Routes>
             <Route path="/" element={<LandingPage />} />
             <Route path="/signup" element={<AuthPage />} />

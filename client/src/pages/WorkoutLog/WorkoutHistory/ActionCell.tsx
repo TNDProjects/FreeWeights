@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/Button";
+import { Button } from "../../../components/ui/Button";
 import { useNavigate } from "react-router-dom";
 
 const ActionCell = ({ id }: { id: string }) => {

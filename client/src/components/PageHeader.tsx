@@ -11,7 +11,7 @@ function PageHeader({ line1, line2, icon, description }: PageHeaderProps) {
   return (
     <div className="py-12 flex flex-col justify-center gap-3">
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl lg:text-3xl !leading-7 lg:!leading-8">
+        <h1 className="text-2xl lg:text-3xl leading-7! lg:leading-8!">
           {line1}
           {line2 && (
             <>
