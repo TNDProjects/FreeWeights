@@ -1,36 +1,81 @@
-//import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import OneRepMaxPage from './pages/OneRepMaxCalculator/OneRepMaxPage';
+import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Session } from "@supabase/supabase-js";
+import supabase from "../supabaseClient";
+import OneRepMaxPage from "./pages/OneRepMaxCalculator/OneRepMaxPage";
 import WorkoutLog from "../src/pages/WorkoutLog/Log/WorkoutLog.tsx";
-import WorkoutHistory from './pages/WorkoutLog/WorkoutHistory/WorkoutHistory.tsx';
-import NutritionCalculatorPage from './pages/NutritionCalculator/NutritionCalculatorPage';
-import BarbellVisualizerPage from './pages/BarbellVisualizer/BarbellVisualizerPage';
+import WorkoutHistory from "./pages/WorkoutLog/WorkoutHistory/WorkoutHistory.tsx";
 import LandingPage from "../src/pages/Landing/LandingPage.tsx";
-//import { Session } from "@supabase/supabase-js";
-//import supabase from "../supabaseClient";
-import AuthPage from "../src/pages/Auth/AuthPage.tsx";
-import Header from './components/header.tsx';
-import Footer from './components/footer.tsx';
-import ScrollToTop from './components/ScrollToTop';
-
-
+import SignUp from "../src/pages/Auth/SignUp.tsx";
+import SignIn from "../src/pages/Auth/SignIn.tsx";
+import Header from "./components/header.tsx";
+import Footer from "./components/footer.tsx";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
+  const [session, setSession] = useState<Session | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setLoading(false);
+    });
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+      setLoading(false);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+  if (loading) {
+    return null;
+  }
+
   return (
     <BrowserRouter>
       <ScrollToTop />
       <div className="font-mono">
-        <Header />
-        <main className="min-h-screen px-4 sm:px-6 lg:px-12 flex flex-col items-center flex-grow">
+        <Header session={session} />
+
+        <main className="min-h-screen px-4 sm:px-6 lg:px-12 flex flex-col items-center grow">
           <Routes>
             <Route path="/" element={<LandingPage />} />
-            <Route path="/signup" element={<AuthPage />} />
             <Route path="/orm-calculator" element={<OneRepMaxPage />} />
-            <Route path="/nutrition-calculator" element={<NutritionCalculatorPage />} />
-            <Route path="/barbell-visualizer" element={<BarbellVisualizerPage />} />
-            <Route path="/log" element={<WorkoutLog />} />
-            <Route path="/log/:id" element={<WorkoutLog />} />
-            <Route path="/workouts" element={<WorkoutHistory />} />
+
+            <Route
+              path="/signup"
+              element={
+                !session ? <SignUp /> : <Navigate to="/workouts" replace />
+              }
+            />
+            <Route
+              path="/signin"
+              element={
+                !session ? <SignIn /> : <Navigate to="/workouts" replace />
+              }
+            />
+
+            <Route
+              path="/log"
+              element={
+                session ? <WorkoutLog /> : <Navigate to="/signin" replace />
+              }
+            />
+            <Route
+              path="/log/:id"
+              element={
+                session ? <WorkoutLog /> : <Navigate to="/signin" replace />
+              }
+            />
+            <Route
+              path="/workouts"
+              element={
+                session ? <WorkoutHistory /> : <Navigate to="/signin" replace />
+              }
+            />
           </Routes>
         </main>
         <Footer />
@@ -38,4 +83,5 @@ function App() {
     </BrowserRouter>
   );
 }
+
 export default App;

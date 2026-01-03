@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/Button';
-import { DataTable } from '@/components/ui/DataTable';
-import { historyColumns } from './historyColumns';
-import type { SavedWorkout } from '../types/types';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "../../../components/ui/Button";
+import { DataTable } from "../../../components/ui/DataTable";
+import { historyColumns } from "./historyColumns";
+import type { SavedWorkout } from "../types/types";
 
 const WorkoutHistory = () => {
   const [history, setHistory] = useState<SavedWorkout[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const saved = localStorage.getItem("workoutHistory");
@@ -21,9 +22,9 @@ const WorkoutHistory = () => {
         <h2 className="text-xl text-light uppercase font-bold tracking-tight">
           Past Workouts
         </h2>
-        <Link to="/log">
-          <Button variant="outline">+ New Workout</Button>
-        </Link>
+        <Button variant="outline" onClick={() => navigate("/log")}>
+          + New Workout
+        </Button>
       </div>
 
       <div className="w-full">
