@@ -1,11 +1,11 @@
 export type SingleEntry = {
   userId: string;
-  id: string,
+  id: string;
   setCount: number;
   reps: number;
   weight: number;
   notes?: string;
-}
+};
 export type EnterLiftForm = {
   id: string;
   name: string;
@@ -13,7 +13,7 @@ export type EnterLiftForm = {
   reps: number;
   weight: number;
   notes?: string;
-}
+};
 
 export type WorkoutLogRow = {
   userId: string;
@@ -31,5 +31,3 @@ export type SavedWorkout = {
 
 //export type WorkoutLogSingleSet = Pick<WorkoutLogRow, "name" | "reps" | "weight">
 //export type WorkoutLogNoNotes = Omit<WorkoutLogRow, "notes">
-
-

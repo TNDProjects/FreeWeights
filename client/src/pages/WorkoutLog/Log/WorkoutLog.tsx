@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import supabase from "../../../../supabaseClient.ts";
 import { Input } from "../../../components/ui/Input.tsx";
 import { Button } from "../../../components/ui/Button.tsx";
 import { CalendarDays } from "lucide-react";
@@ -11,7 +12,6 @@ import type {
   WorkoutLogRow,
   SingleEntry,
   EnterLiftForm,
-  SavedWorkout,
 } from "../types/types.ts";
 
 const WorkoutLog = () => {
@@ -20,24 +20,28 @@ const WorkoutLog = () => {
   const navigate = useNavigate();
   const params = useParams();
 
-  // If we see that the params.id (from the url) matches an id inside our localstorage, load that workout.
   useEffect(() => {
-    const exisitingWorkouts = localStorage.getItem("workoutHistory");
-    if (exisitingWorkouts && params.id) {
-      const parsedExistingWorkouts = JSON.parse(
-        exisitingWorkouts!,
-      ) as SavedWorkout[];
-      const workoutToEdit = parsedExistingWorkouts.find(
-        (workout) => workout.id === params.id,
-      );
+    const fetchWorkoutToEdit = async () => {
+      if (!params.id) return;
 
-      if (workoutToEdit) {
-        setLogData(workoutToEdit.exercises);
-        setWorkoutName(workoutToEdit.name);
+      const { data, error } = await supabase
+        .from("workouts")
+        .select("*")
+        .eq("id", params.id)
+        .single();
+
+      if (error) {
+        console.error("Error fetching workout:", error);
+
+        // navigate("/workouts");
+      } else if (data) {
+        setLogData(data.exercises); // Load the exercises
+        setWorkoutName(data.name); // Load the name
       }
-    }
-  }, [params.id]);
+    };
 
+    fetchWorkoutToEdit();
+  }, [params.id]);
   const handleAddSet = (form: EnterLiftForm) => {
     const expandedSets: SingleEntry[] = Array.from(
       {
@@ -71,38 +75,45 @@ const WorkoutLog = () => {
       );
     });
   };
-  const finishWorkout = () => {
-    // if we have a params.id we know to just save it to this current workout
-    const currentWorkoutId = params.id ? params.id : crypto.randomUUID();
-    console.log(currentWorkoutId);
+  const finishWorkout = async () => {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-    const savedWorkout: SavedWorkout = {
-      userId: currentWorkoutId,
-      id: currentWorkoutId,
-      date: new Date().toLocaleDateString(),
-      name: workoutName,
-      exercises: logData,
-    };
-
-    const historyString = localStorage.getItem("workoutHistory");
-    const history = historyString ? JSON.parse(historyString) : [];
-    let updatedWorkoutLog;
-
-    if (params.id) {
-      updatedWorkoutLog = history.map((workout: SavedWorkout) => {
-        if (workout.id === currentWorkoutId) {
-          return savedWorkout;
-        }
-        return workout;
-      });
-    } else {
-      updatedWorkoutLog = [savedWorkout, ...history];
+    if (!user) {
+      alert("You must be logged in to save a workout.");
+      return;
     }
 
-    localStorage.setItem("workoutHistory", JSON.stringify(updatedWorkoutLog));
-    navigate("/workouts");
-  };
+    const workoutData = {
+      user_id: user.id,
+      name: workoutName || "Untitled Workout",
+      exercises: logData,
+      created_at: new Date().toISOString(),
+    };
 
+    let error;
+
+    if (params.id) {
+      // UPDATE EXISTING WORKOUT
+      const response = await supabase
+        .from("workouts")
+        .update(workoutData)
+        .eq("id", params.id);
+      error = response.error;
+    } else {
+      // CREATE NEW WORKOUT
+      const response = await supabase.from("workouts").insert([workoutData]);
+      error = response.error;
+    }
+
+    if (error) {
+      console.error("Error saving workout:", error);
+      alert("Failed to save workout!");
+    } else {
+      navigate("/workouts");
+    }
+  };
   return (
     <div className="w-full max-w-3xl mx-auto flex flex-col gap-8">
       <PageHeader

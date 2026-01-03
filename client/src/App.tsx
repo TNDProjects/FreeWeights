@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Session } from "@supabase/supabase-js";
 import supabase from "../supabaseClient";
-import OneRepMaxPage from "./pages/OneRepMaxCalculator/OneRepMaxPage";
-import WorkoutLog from "../src/pages/WorkoutLog/Log/WorkoutLog.tsx";
-import WorkoutHistory from "./pages/WorkoutLog/WorkoutHistory/WorkoutHistory.tsx";
-import LandingPage from "../src/pages/Landing/LandingPage.tsx";
-import SignUp from "../src/pages/Auth/SignUp.tsx";
-import SignIn from "../src/pages/Auth/SignIn.tsx";
-import Header from "./components/header.tsx";
-import Footer from "./components/footer.tsx";
-import ScrollToTop from "./components/ScrollToTop";
+import {
+  SignUp,
+  SignIn,
+  WorkoutLog,
+  WorkoutHistory,
+  OneRepMaxPage,
+  LandingPage,
+} from "./pages/index.ts";
+import { Header, Footer, ScrollToTop } from "./components/index.ts";
 
 function App() {
   const [session, setSession] = useState<Session | null>(null);
