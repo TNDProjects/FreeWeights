@@ -6,17 +6,17 @@ import { WeightInput } from "./WeightInput.tsx";
 interface EnterLiftProps {
   numberOfReps: number | string,
   weightLifted: number | string,
-  unitOrder: "lbs" | "kg";
+  weightUnit: "lbs" | "kg";
   onRepsChange: (value: string) => void;
   onWeightChange: (value: string) => void;
-  onUnitOrderChange: (value: "lbs" | "kg") => void;
+  onWeightUnitChange: (value: "lbs" | "kg") => void;
 
   buttonText: string;
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
 
-export const EnterLift = ({numberOfReps, weightLifted, unitOrder, onRepsChange, onWeightChange, onUnitOrderChange, buttonText, onSubmit}: EnterLiftProps) => {
+export const EnterLift = ({numberOfReps, weightLifted, weightUnit, onRepsChange, onWeightChange, onWeightUnitChange, buttonText, onSubmit}: EnterLiftProps) => {
   return (
     <div className="">
       <form
@@ -31,15 +31,15 @@ export const EnterLift = ({numberOfReps, weightLifted, unitOrder, onRepsChange, 
             placeholder="ex. 225"
             value={weightLifted}
             onChange={(e) => onWeightChange(e.target.value)}
-            unitOrder={unitOrder}
-            onUnitOrderChange={onUnitOrderChange}
+            weightUnit={weightUnit}
+            onWeightUnitChange={onWeightUnitChange}
             required
             max="1500"
             min="0"
             
           />
           <Input
-            id="number-of-reps"
+            id="reps-input"
             label="reps performed"
             type="number"
             placeholder="ex. 5"

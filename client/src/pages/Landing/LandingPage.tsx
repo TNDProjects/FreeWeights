@@ -81,7 +81,7 @@ function LandingPage() {
           </Link>
 
           <Link
-            to="/weight-visualizer"
+            to="/barbell-visualizer"
             className="flex items-center justify-between border-2 border-dark dark:border-light rounded-lg px-4 py-3 hover:border-grey hover:text-grey transition-colors group"
           >
             <div className="flex items-center gap-4">

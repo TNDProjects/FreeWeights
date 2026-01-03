@@ -5,7 +5,7 @@ export const Percentages = ({ oneRepMax }: { oneRepMax: Max }) => {
   const percentagesFormatted = useGetPercentages(oneRepMax);
 
   return (
-    <div className="border-t">
+    <div className="border-t border-dark dark:border-light">
       <div className="divide-y divide-border">
         {percentagesFormatted.map((row) => (
           <div
